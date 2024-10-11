@@ -1,0 +1,21 @@
+body {
+    background-image: url("../images/AutoMechanicBG.jpg");
+    /*image from https://www.dickysdoghouse.com/post/the-5-most-important-tools-for-a-mechanic*/
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #1d2a35;
+
+}
+
+h1 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 72px;
+    color: aliceblue;
+    text-align: center;
+}
+
+p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: antiquewhite;
+}
