@@ -16,7 +16,54 @@ h1 {
     text-align: center;
 }
 
-p {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: antiquewhite;
+form{
+    width: 30%;
+    margin: auto;
+
 }
+legend{
+    text-align: center;
+}
+
+
+.roundBox{
+   
+    border-radius: 25px;
+    background-color:rgba(255, 255, 255, 0.838) ;
+    padding: 25px;
+}
+.input{
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 3px solid silver;
+    margin-bottom: 20px;
+  
+}
+input[type="submit"]{
+    color:black;
+    font-family: Verdana, Tahoma, sans-serif;
+    text-shadow:  rgb(10, 9, 20);
+}
+.input:focus{
+    outline: none;
+    border: 3px solid salmon;
+}
+
+.heading{
+    font-family:Geneva, Tahoma, sans-serif;
+    color: #1d2a35;
+    font-size: 20px;
+}
+.text{
+    color: lightslategrey;
+    font-family: Verdana, Tahoma, sans-serif;
+    font-size: 14px;
+}
+
+body{
+    font-family: Verdana, Tahoma, sans-serif;
+}
+
+

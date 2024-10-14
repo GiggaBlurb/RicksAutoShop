@@ -6,10 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Norman Martin">
     <link rel="stylesheet" href="CSS/default.css">
+
 </head>
 
 <body>
     <h1>Rick's Auto Shop</h1></br>
+    <form name="login" id="loginForm">
+        <div class="roundBox">
+            <fieldset style="border:none">
+                <legend>
+                    <p class="heading">Please log in to your account</p>
+                </legend>
+                <label for="name">
+                    <span class="text"> Username</span>
+                </label>
+
+                <input class="input" type="text" name="name" id="name" minlength="5" maxlength="25" placeholder="Norman"
+                    required />
+                <label for="password">
+                    <span class="text">Password</span>
+                </label>
+                <input class="input" type="Password" name="password" id="password" minlength="5" placeholder="Norman123"
+                    required />
+                <div class="input" style="border: none;height: 10px;;">
+                    <span id="Message" class="text"></span>
+                </div>
+                <button class="input" type="submit" value="LOGIN"
+                    style="background-image:linear-gradient(to right,silver,white) ;">
+                    <span class="text"> Log In</span></button>
+                <label for="remember">
+                    <span class="text">Remember me</span>
+                </label>
+                <input type="checkbox" name="remember" id="remember" />
+            </fieldset>
+        </div>
+    </form>
+    <script src="JavaScript/default.js"></script>
 </body>
 
 </html>
