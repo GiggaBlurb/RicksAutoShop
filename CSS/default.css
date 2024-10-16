@@ -6,7 +6,6 @@ body {
     background-position: center;
     background-size: cover;
     background-color: #1d2a35;
-
 }
 
 h1 {
@@ -17,8 +16,8 @@ h1 {
 }
 
 form{
-    width: 30%;
     margin: auto;
+    width: 30vw;
 
 }
 legend{
