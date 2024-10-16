@@ -52,9 +52,15 @@ form{
     border: 3px solid gold;
 }
  button{
+    
     background-image:linear-gradient(to right,silver,white) ;
 }
-
+.centerImg{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 150px;
+}
 .heading{
     font-family:Geneva, Tahoma, sans-serif;
     color: #1d2a35;
