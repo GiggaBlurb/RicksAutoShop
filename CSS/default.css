@@ -6,6 +6,7 @@ body {
     background-position: center;
     background-size: cover;
     background-color: #1d2a35;
+   
 }
 
 h1 {
@@ -13,41 +14,45 @@ h1 {
     font-size: 72px;
     color: aliceblue;
     text-align: center;
+ 
 }
 
-form{
-    margin: auto;
-    width: 30vw;
 
-}
 legend{
     text-align: center;
 }
 
+form{
+    margin: auto;
+    width: 400px;
+    background-color:rgba(255, 255, 255, 0.838) ;
+    border-radius: 4px;
+    padding: 5px;
+    border-bottom:10px inset gold;
+}
+
 
 .roundBox{
-   
-    border-radius: 25px;
-    background-color:rgba(255, 255, 255, 0.838) ;
-    padding: 25px;
+    display: flex;
+    justify-content: center;
+    margin: 25px 50px 50px 50px;
 }
 .input{
     box-sizing: border-box;
     width: 100%;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 4px;
     border: 3px solid silver;
     margin-bottom: 20px;
   
 }
-input[type="submit"]{
-    color:black;
-    font-family: Verdana, Tahoma, sans-serif;
-    text-shadow:  rgb(10, 9, 20);
-}
+
 .input:focus{
     outline: none;
-    border: 3px solid salmon;
+    border: 3px solid gold;
+}
+ button{
+    background-image:linear-gradient(to right,silver,white) ;
 }
 
 .heading{
