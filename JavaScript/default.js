@@ -1,4 +1,5 @@
-
+//Norman Martin-2300232
+//Tutor:Sirisha Badhika
 const form = document.getElementById('loginForm');
 
 form.addEventListener("submit", function (event) {
@@ -10,17 +11,17 @@ form.addEventListener("submit", function (event) {
     event.preventDefault();
 
     if (name == username && password == userpassword) {
-        displayMessage("Login is Succesfull","green")
-        window.location.href = "https://www.w3schools.com";
+        displayMessage("Login is Succesfull", "green")
+        window.location.href = "./webpages/homePage.html";
     }
     else {
-        displayMessage("Login is Unsuccesfull","red")
+        displayMessage("Login is Unsuccesfull", "red")
     }
 
-    function displayMessage(message,color) {
+    function displayMessage(message, color) {
         Message.innerHTML = message;
-        Message.style.color=color;
-      }
+        Message.style.color = color;
+    }
 });
 
 
