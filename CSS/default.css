@@ -9,11 +9,13 @@ body {
     background-size: cover;
     background-color: #1d2a35;
 }
-#login{
+
+#login {
     background-image: url("../images/AutoMechanicBG.jpg");
     /*image from https://www.dickysdoghouse.com/post/the-5-most-important-tools-for-a-mechanic*/
 }
-#home{
+
+#home {
     background-image: url("../images/car_engine.jpg");
     /*image from https://www.flickr.com/photos/82404061@N04/40769679523*/
 }
@@ -113,42 +115,44 @@ body {
     height: fit-content;
     position: fixed;
     border-bottom: 4px solid gold;
-    background-color: black;
+    border-top: 4px solid gold;
+    background-color: azure;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.headerMain .centerImg{
+.headerMain .centerImg {
     width: 51px;
 }
 
-.left{
+.left {
     display: flex;
     align-items: center;
 }
-#company,#service,#checkout,#aboutus{
+
+#company,
+#service,
+#checkout,
+#aboutus {
     padding: 10px 10px;
     font-size: 2vw;
     display: block;
     text-align: center;
     text-decoration: none;
-    border-radius: 4px;
 }
 
-#company
-{
+#company {
     padding-left: 50px;
 }
 
 
-a:hover{
-   background-color: gold;
-   color: black;
-}
-a{
-    background-color: black;
-    color:#f3c522;
+a:hover {
+    background-color: #0000005e;
+    color: black;
 }
 
-
+a {
+    color: #000000;
+  
+}
