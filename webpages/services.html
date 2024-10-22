@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Rick's Auto Shop</title>
+    <title>Rick's Auto Shop Serivce Page</title>
     <link rel="icon" type="image/x-icon" href="../images/RickAutoIcon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Norman Martin-2300232">
@@ -10,25 +10,25 @@
     <script src="../JavaScript/default.js"></script>
 </head>
 
-<body id="servicePage">
+<body id="servicePage" name="Top">
     <div class="headerMain headerBorder">
         <div class="bannerLeft">
             <a id="logo" href="../index.html"><img class="centerImg" src="../images/RickAutoLogo.png"
                     alt="Image not found"></a>
             <a id="company" href="../webpages/homePage.html">Rick's Auto Shop &#128191;</a>
         </div>
-        <a id="service" href="">Services &#128736;</a>
-        <a id="checkout" href="">Checkout &#128722; </a>
-        <a id="aboutus" href="">About Us &#128231;</a>
+        <a id="service" href="services.html">Services &#128736;</a>
+        <a id="checkout" href="checkout.html">Checkout &#128722; </a>
+        <a id="aboutus" href="aboutUs.Html">About Us &#128231;</a>
     </div>
-
     <h1 class="heading">Services</h1>
     <div class="fadeBorder"></div>
 
     <div id="service" name="Car Service & Maintenace" class="box">
-        <h2 class="title">Car Service & Maintenace</h2>
+
         <div class="right">
             <form class="serviceContent">
+                <h2 class="title">Car Service & Maintenace</h2>
                 <table cellspacing="5" cellpadding="5">
                     <fieldset>
                         <tr>
@@ -37,7 +37,7 @@
                             </td>
                             <td>
                                 <label for="Maintenace">
-                                    <p>Maintenance</p>
+                                    <p class="name"> Car Maintenance</p>
                                 </label>
                             </td>
                             <td>
@@ -50,7 +50,7 @@
                             </td>
                             <td>
                                 <label for="BodyWork">
-                                    <p>Body Work</p>
+                                    <p class="name"> Car Body Work</p>
                                 </label>
                             </td>
                             <td>
@@ -97,7 +97,7 @@
                             </td>
                             <td>
                                 <label for="maintenance">
-                                    <p>Maintenace</p>
+                                    <p class="name"> Oil Maintenace</p>
                                 </label>
                             </td>
                             <td>
@@ -110,7 +110,7 @@
                             </td>
                             <td>
                                 <label for="oilChange">
-                                    <p>Full Filter change</p>
+                                    <p class="name">Full Filter change</p>
                                 </label>
                             </td>
                             <td>
@@ -145,7 +145,7 @@
     </div>
 
     <div id="service" name="Tire Replacement" class="box">
-        <h2 class="title">Tire Replacement</h2>
+        <h2 class="title">Tire</h2>
         <div class="right">
             <form class="serviceContent">
                 <table cellspacing="5" cellpadding="5">
@@ -158,7 +158,7 @@
                             </td>
                             <td>
                                 <label for="replacement">
-                                    <p>Replacement</p>
+                                    <p class="name">Tire Replacement</p>
                                 </label>
                             </td>
                             <td>
@@ -171,7 +171,7 @@
                             </td>
                             <td>
                                 <label for="repair">
-                                    <p>Repair</p>
+                                    <p class="name">Tire Repair</p>
                                 </label>
                             </td>
                             <td>
@@ -218,7 +218,7 @@
                             </td>
                             <td>
                                 <label for="Alignment">
-                                    <p>Alignment</p>
+                                    <p class="name"> Wheel Alignment</p>
                                 </label>
                             </td>
                             <td>
@@ -231,7 +231,7 @@
                             </td>
                             <td>
                                 <label for="Servicing">
-                                    <p>Servicing</p>
+                                    <p class="name"> Wheel Servicing</p>
                                 </label>
                             </td>
                             <td>
@@ -274,12 +274,12 @@
                         <tr>
                             <td>
                                 <legend>
-                                    <input  class="checkmark" type="checkbox" id="newbattery" />
+                                    <input class="checkmark" type="checkbox" id="newbattery" />
                                 </legend>
                             </td>
                             <td>
                                 <label for="newbattery">
-                                    <p>Replacement</p>
+                                    <p class="name">Batter replacement</p>
                                 </label>
                             </td>
                             <td>
@@ -292,7 +292,7 @@
                             </td>
                             <td>
                                 <label for="servicebattery">
-                                    <p>Deluxe Package</p>
+                                    <p class="name">Battery Upgrade</p>
                                 </label>
                             </td>
                             <td>
@@ -334,12 +334,12 @@
                         <tr>
                             <td>
                                 <legend>
-                                    <input  class="checkmark" type="checkbox" id="brakeService" />
+                                    <input class="checkmark" type="checkbox" id="brakeService" />
                                 </legend>
                             </td>
                             <td>
                                 <label for="brakeService">
-                                    <p>Service</p>
+                                    <p class="name"> Brake Service</p>
                                 </label>
                             </td>
                             <td>
@@ -352,7 +352,7 @@
                             </td>
                             <td>
                                 <label for="rest">
-                                    <p>Recharge</p>
+                                    <p class="name">Brake Maintenance</p>
                                 </label>
                             </td>
                             <td>
@@ -380,8 +380,8 @@
             </form>
         </div>
         <div class="left">
-            <img src="../images/battery.jpg" alt="Image not found">
-            <!--source:https://www.carfitexperts.com/car-battery-replacement-should-even-try/-->
+            <img src="../images/brake.jpg" alt="Image not found">
+            <!--source:https://caseyautomotive.com/arlington-heights-brake-repair.html-->
         </div>
     </div>
 
@@ -399,7 +399,7 @@
                             </td>
                             <td>
                                 <label for="oilChange">
-                                    <p>System repair</p>
+                                    <p class="name">Coolant System repair</p>
                                 </label>
                             </td>
                             <td>
@@ -412,7 +412,7 @@
                             </td>
                             <td>
                                 <label for="Refill">
-                                    <p>Refill</p>
+                                    <p class="name"> Coolant Refill</p>
                                 </label>
                             </td>
                             <td>
@@ -459,7 +459,7 @@
                             </td>
                             <td>
                                 <label for="repair">
-                                    <p>Repair</p>
+                                    <p class="name">Window Repair</p>
                                 </label>
                             </td>
                             <td>
@@ -472,7 +472,7 @@
                             </td>
                             <td>
                                 <label for="tint">
-                                    <p>Tint</p>
+                                    <p class="name">Window Tint</p>
                                 </label>
                             </td>
                             <td>
@@ -514,12 +514,12 @@
                         <tr>
                             <td>
                                 <legend>
-                                    <input  class="checkmark" type="checkbox" id="install" />
+                                    <input class="checkmark" type="checkbox" id="install" />
                                 </legend>
                             </td>
                             <td>
                                 <label for="install">
-                                    <p>Installation</p>
+                                    <p class="name"> Alarm Installation</p>
                                 </label>
                             </td>
                             <td>
@@ -532,7 +532,7 @@
                             </td>
                             <td>
                                 <label for="Upgrade">
-                                    <p>Upgrade System</p>
+                                    <p class="name"> Alarm Upgrade</p>
                                 </label>
                             </td>
                             <td>
@@ -570,7 +570,7 @@
             <table cellspacing="10" cellpadding="15">
                 <tr>
                     <td>
-                        <h2 class="title">Total(Before Tax)-$</h2>
+                        <h2 class="title">Total(After Tax)-$</h2>
                     </td>
                     <td>
                         <p id="TotalCost"></p>
@@ -578,15 +578,13 @@
                 </tr>
                 <tr>
                     <td>
-                        <button class="submitBtn">
-                            <a href="checkout.html"><span class="text">Cancel</span>
-                            </a>
+                        <button class="submitBtn" onclick='cancel()'>
+                            <span class="text">Cancel</span>
                         </button>
                     </td>
                     <td>
-                        <button class="submitBtn">
-                            <a href="checkout.html"><span class="text"> Exit</span>
-                            </a>
+                        <button class="submitBtn" onclick='exit()'>
+                            <span class="text"> Exit</span>
                         </button>
                     </td>
                 </tr>
@@ -594,17 +592,11 @@
 
         </div>
         <div class="left">
-            <button class="submitBtn">
-                <a href="checkout.html"><span class="text"> Submit</span>
-                </a>
-            </button>
+            <a href="checkout.html"></span>
+                <button class="submitBtn" onclick="checkout()"> <span class="text"> Checkout </button>
+            </a>
         </div>
     </div>
-
-
-
-
-
     <div id="footer">
         <ul type="disc">
             <li> <b> Telephone:</b>1(<i>876</i>) 598-8988</li>
@@ -621,8 +613,8 @@
         <div>
 
 
-            <a href=""><u>About Us</u></a><br>
-            <a href=""> &#128285;</a>
+            <a href="aboutUs.Html"><u>About Us</u></a><br>
+            <a href="#Top"> &#128285;</a>
         </div>
     </div>
 </body>

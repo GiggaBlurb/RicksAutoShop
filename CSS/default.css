@@ -23,7 +23,9 @@ h1 {
     /*image from https://www.dickysdoghouse.com/post/the-5-most-important-tools-for-a-mechanic*/
 }
 
-#homePage,#servicePage {
+#homePage,
+#servicePage,
+#checkoutPage {
     background-image: url("../images/car_engine.jpg");
     /*image from https://www.flickr.com/photos/82404061@N04/40769679523*/
 
@@ -36,8 +38,21 @@ h1 {
     margin-top: 150px;
 }
 
-fieldset{
-    border:none;
+#servicePage h1 {
+    color: aliceblue;
+    font-size: 40px;
+    margin-top: 150px;
+}
+
+#checkoutPage h1 {
+    color: aliceblue;
+    font-size: 40px;
+    margin-top: 150px;
+}
+
+
+fieldset {
+    border: none;
 }
 
 
@@ -59,11 +74,11 @@ fieldset{
     border-right: 10px inset gold;
 }
 
-td{
+td {
     padding-left: 20px;
 }
 
-table p{
+table p {
     font-size: 15px;
 }
 
@@ -73,7 +88,7 @@ table p{
     height: 30px;
     width: 30px;
     background-color: #eee;
-  }
+}
 
 
 .roundBox {
@@ -129,14 +144,14 @@ button {
     font-size: 20px;
 }
 
-.title{
+.title {
     font-family: Tahoma, sans-serif;
     color: #1d2a35;
-    font-weight:bold;
+    font-weight: bold;
     font-size: 18px;
 }
 
-.box .title{
+.box .title {
     margin-left: 50px;
 }
 
@@ -186,7 +201,7 @@ body {
     padding: 10px 10px;
     font-size: 2vw;
     display: block;
-  
+
 }
 
 #company {
@@ -208,10 +223,10 @@ a {
 
 
 .box {
-    
+
     margin: auto;
     width: 80%;
-    overflow:auto;
+    overflow: auto;
     margin-top: 50px;
     background-image: linear-gradient(90deg, #ffffff 0, silver 50%, #ffffff 100%);
     border-radius: 4px;
@@ -225,7 +240,7 @@ a {
     width: 600px;
     float: left;
     padding-left: 20px;
- 
+
 }
 
 .left {
@@ -234,30 +249,32 @@ a {
 
 }
 
-.box button{
+.box button {
     width: 200px;
     height: 40px;
     border: 1px solid black;
-   
-}
-button:hover{
-    background-image: linear-gradient( #ffffff83 50%, white 100%);
-    border:1px solid gold;
+
 }
 
-.box .text{
+button:hover {
+    background-image: linear-gradient(#ffffff83 50%, white 100%);
+    border: 1px solid gold;
+}
+
+.box .text {
     color: black;
 }
-.box a:hover{
+
+.box a:hover {
     background-color: rgba(255, 255, 255, 0);
 }
 
-.box .heading{
+.box .heading {
     background-color: gold;
-    
+
 }
 
-#homePage .right h1{
+#homePage .right h1 {
     margin-top: 0;
     color: black;
     font-size: 30px;
@@ -268,23 +285,25 @@ button:hover{
     border-radius: 10px;
     width: 500px;
 }
-.box q{
+
+.box q {
     display: flex;
     margin-top: 100px;
-   font-size: 30px;
-   text-align: center;
+    font-size: 30px;
+    text-align: center;
 }
-li{
-    padding:4px;
+
+li {
+    padding: 4px;
     list-style-image: url('../images/nut.png');
 }
 
-#footer{
+#footer {
     display: flex;
     align-items: center;
     color: white;
     font-size: 14px;
-    border-top:2px solid gold;
+    border-top: 2px solid gold;
     margin: auto;
     padding: 20px;
     margin-top: 100px;
@@ -294,27 +313,80 @@ li{
     left: 0;
 }
 
-#footer div{
-    font-size: 24px;display: flex;margin-top:150px;margin-left: 200px;
+#footer div {
+    font-size: 24px;
+    display: flex;
+    margin-top: 150px;
+    margin-left: 200px;
 }
-#footer a{
-    padding-left:50px ;
+
+#footer a {
+    padding-left: 50px;
 }
-.bottom{
+
+.bottom {
     justify-content: flex-end;
 }
-#footer li{
+
+#footer li {
 
     padding: 0;
 
 }
 
-.submitBtn{
+.submitBtn {
     width: 100%;
     margin: auto;
 }
-.left .submitBtn{
-    margin-top: 50px;
+
+.left a {
+    margin-top: 110px;
+    margin-left: 100px;
 
 }
 
+#checkout .serviceContent {
+    border: 1px solid black;
+}
+
+.left table {
+    margin: auto;
+}
+
+.errorBox {
+    display: flex;
+    margin: auto;
+    margin-top: 200px;
+    justify-content: center;
+    background-color: silver;
+    color: #1d2a35;
+}
+
+#profileimg {
+    width: 80%;
+}
+
+.profileBox {
+    width: 50%;
+}
+
+.profileBox .right {
+
+    width: 100px;
+    float: left;
+}
+
+.profileBox .left {
+    margin-left: 10px;
+    display: flex;
+
+}
+
+.profileBox a {
+    color: #1d2a35;
+
+}
+
+.profileBox a:hover {
+    color: #e58c1f;
+}
