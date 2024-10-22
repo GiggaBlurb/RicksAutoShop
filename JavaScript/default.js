@@ -87,11 +87,7 @@ window.onload = function () {
                     totalTax = (totalCost * taxRate)
                     tax.innerHTML = serviceTax;
                     subtotal.innerHTML = sub;
-
                     TotalCost.innerHTML = totalCost + totalTax;
-
-
-
                 });
 
             }
@@ -135,13 +131,18 @@ window.onload = function () {
 function cancel() {
     let TotalCost = document.getElementById('TotalCost');
     const Services = document.getElementsByClassName('serviceContent');
+
     for (let index = 0; index < Services.length; index++) {
+        let subtotal = Services[index].getElementsByClassName('subtotal')[0];
+        let tax = Services[index].getElementsByClassName('tax')[0];
 
         let check = Services[index].getElementsByClassName('checkmark');
         for (let subindex = 0; subindex < check.length; subindex++) {
 
             if (check[subindex].checked == true) {
                 check[subindex].checked = false;
+                subtotal.innerHTML='';
+                tax.innerHTML ='';
             }
         }
     }
