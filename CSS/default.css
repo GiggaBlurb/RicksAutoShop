@@ -8,6 +8,8 @@ body {
     background-position: center;
     background-size: cover;
     background-color: #1d2a35;
+    background-image: url("../images/car_engine.jpg");
+    /*image from https://www.flickr.com/photos/82404061@N04/40769679523*/
 }
 
 h1 {
@@ -18,17 +20,9 @@ h1 {
     cursor: default;
 }
 
-#loginPage {
+#loginPage{
     background-image: url("../images/AutoMechanicBG.jpg");
     /*image from https://www.dickysdoghouse.com/post/the-5-most-important-tools-for-a-mechanic*/
-}
-
-#homePage,
-#servicePage,
-#checkoutPage {
-    background-image: url("../images/car_engine.jpg");
-    /*image from https://www.flickr.com/photos/82404061@N04/40769679523*/
-
 }
 
 
@@ -125,6 +119,25 @@ button {
 
     background-image: linear-gradient(to right, silver, white);
 }
+
+.Registerlink{
+    color: black;
+}
+
+.Registerlink:hover{
+
+    color: #e58c1f;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+/*Hide Arrows for TRN Input*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 
 .centerImg {
     display: block;
@@ -258,7 +271,7 @@ a {
 
 button:hover {
     background-image: linear-gradient(#ffffff83 50%, white 100%);
-    border: 1px solid gold;
+    border: 3px solid gold;
 }
 
 .box .text {
