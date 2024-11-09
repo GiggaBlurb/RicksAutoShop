@@ -131,7 +131,7 @@ button {
     text-decoration: underline;
 }
 
-/*Hide Arrows for TRN Input*/
+/*Hide Arrows for number Input*/
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -269,7 +269,7 @@ a {
 
 }
 
-button:hover {
+input:hover,button:hover {
     background-image: linear-gradient(#ffffff83 50%, white 100%);
     border: 3px solid gold;
 }

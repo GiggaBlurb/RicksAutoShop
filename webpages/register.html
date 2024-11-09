@@ -15,7 +15,7 @@
     <img class="centerImg" src="../images/RickAutoLogo.png" alt="Image not found">
     <h1 class>Rick's Auto Shop</h1>
     <div class="roundBox">
-        <form name="login" id="loginForm" class="formContent">
+        <form name="register" id="register" class="formContent">
 
             <fieldset>
                 <legend>
@@ -34,21 +34,34 @@
                 <input class="input" type="text" name="name" id="lname" minlength="4" maxlength="25"
                     placeholder="&#128100;" required />
                 <label for="dob">
-                    <span class="text">Date of Birth</span>
+                    <span class="text"  >Date of Birth</span>
                 </label>
-                <input class="input" type="date" name="dob" id="dob" placeholder="DD/MM/YYYY" required />
+                <input class="input" type="date" name="dob" id="dob" onchange="validateAge(this)" placeholder="DD/MM/YYYY"  required />
+
+                <span class="text"> Please identify your gender:</span>
+                </br></br>
+                <label for="male"><span class="text">Male</span></label>
+                <input type="radio" name="gender" id="male" value="Male" required>
+
+                <label for="female"><span class="text">Female</span></label>
+                <input type="radio" name="gender" id="female" value="Female">
+
+                <label for="other"><span class="text">Other</span></label>
+                <input type="radio" name="gender" id="other" value="Other">
+                </br></br>
+                <label for="phone"><span class="text"> Telephone Number</span> </label>
+                <input class="input" type="text" name="phone" id="phone" minlength="18" maxlength="18"
+                    placeholder="Enter your Phone number" required />
 
                 <label for="email"><span class="text">Email Address</span></label>
-                <input class="input" type="text" name="email" id="email" minlength="5" maxlength="25"
+                <input class="input" type="text" name="email" id="email" minlength="5" maxlength="50"
                     placeholder="example@gmail.com" required />
-
-
                 <label for="trn">
                     <span class="text">TRN</span>
                 </label>
-                <input class="input" type="number" name="password" id="password" minlength="9" placeholder="000-000-000"
-                    required />
-
+                <input class="input" type="text" name="trn" id="trn" minlength="11" maxlength="11"
+                    placeholder="000-000-000" onchange="checkTRN(this)"  required />
+                    
                 <label for="password">
                     <span class="text">Password</span>
                 </label>
@@ -86,7 +99,7 @@
             <a href="#Top"> &#128285;</a>
         </div>
     </div>
-    <script src="JavaScript/login.js"></script>
+    <script src="../JavaScript/register.js"></script>
 </body>
 
 </html>
