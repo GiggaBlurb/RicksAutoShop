@@ -18,8 +18,6 @@ const User = {
 };
 
 var UsersArray = [];
-
-
 if (localStorage.getItem("RegistrationData") !== null) {
     UsersArray = JSON.parse(localStorage.getItem("RegistrationData"));
 }

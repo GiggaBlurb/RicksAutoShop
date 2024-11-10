@@ -66,6 +66,7 @@ fieldset {
     border-radius: 4px;
     padding: 5px;
     border-right: 10px inset gold;
+    min-height: 200px;
 }
 
 td {
@@ -77,11 +78,8 @@ table p {
 }
 
 .checkmark {
-    margin: auto;
-    justify-content: center;
     height: 30px;
     width: 30px;
-    background-color: #eee;
 }
 
 
@@ -297,7 +295,7 @@ input:hover,button:hover {
 .box img {
     margin: auto;
     border-radius: 10px;
-    width: 500px;
+    width: 60vh;
 }
 
 .box q {

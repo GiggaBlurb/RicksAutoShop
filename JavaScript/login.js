@@ -63,6 +63,8 @@ function checkPassword(trnNUm, pass) {
         if (UsersArray[index].trn === trnNUm && UsersArray[index].password===pass) {
             displayMessage("Login Successfull", "green");
             trn.style.borderColor = "silver";
+
+            localStorage.setItem("currentUser",index);
             
             setTimeout(() => {
                 window.location.href = "./webpages/homePage.html";
