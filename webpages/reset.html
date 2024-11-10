@@ -2,32 +2,26 @@
 <html>
 
 <head>
-    <title>Rick's Auto Shop Login Pages</title>
-    <link rel="icon" type="image/x-icon" href="images/RickAutoIcon.png">
+    <title>Rick's Auto Shop Reset Password</title>
+    <link rel="icon" type="image/x-icon" href="../images/RickAutoIcon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Norman Martin-2300232">
     <!--Tutor:Sirisha Badhika-->
-    <link rel="stylesheet" href="CSS/default.css">
+    <link rel="stylesheet" href="../CSS/default.css">
 </head>
 
-<body id="loginPage" name="Top">
-
-    <img class="centerImg" src="images/RickAutoLogo.png" alt="Image not found">
-    <h1 class>Rick's Auto Shop</h1>
+<body id="resetPage" name="Top">
+    <img class="centerImg" src="../images/RickAutoLogo.png" alt="Image not found" />
+    <h1>Rick's Auto Shop</h1>
     <div class="roundBox">
-        <form name="login" id="loginForm" class="formContent">
-
+        <form name="register" id="reset" class="formContent">
             <fieldset>
-                <legend>
-                    <p class="heading">Please log in to your account</p>
-                </legend>
-
                 <label for="trn">
                     <span class="text">TRN</span>
                 </label>
                 <input class="input" type="text" name="trn" id="trn" minlength="11" maxlength="11"
-                    placeholder="000-000-000" required />
-
+                    placeholder="000-000-000"required />
+                    
                 <label for="password">
                     <span class="text">Password</span>
                 </label>
@@ -37,11 +31,12 @@
                     <span id="Message" class="text"></span>
                 </div>
                 <button class="input" type="submit" value="LOGIN">
-                    <span class="text"> Log In</span></button>
-                <div>
-                    <p class="text">New Then <a class="Registerlink" href="webpages/register.html">Register</a></p>
-                    <p class="text">Reset <a class="Registerlink" href="webpages/reset.html">Password</a></p>
-                </div>
+                    <span class="text"> Save Password</span></button>
+                <button class="input" type="reset" value="LOGIN">
+                    <span class="text"> Cancel</span></button>
+                    <div>
+                        <p class="text"> Go Back to <a class="Registerlink" href="../index.html">Login<a></p>
+                    </div>
             </fieldset>
 
         </form>
@@ -67,7 +62,7 @@
             <a href="#Top"> &#128285;</a>
         </div>
     </div>
-    <script src="JavaScript/login.js"></script>
+    <script src="../JavaScript/reset.js"></script>
 </body>
 
 </html>

@@ -24,9 +24,6 @@ if (localStorage.length != 0) {
 
 
 
-console.log(UsersArray);
-
-
 form.addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -39,9 +36,6 @@ form.addEventListener("submit", function (event) {
     User.password = document.getElementById('password').value
     User.trn = trn.value;
     trn.value = trn.value.replace(/[\(\)\-\' ']/g, '');
-
-
-
 
 
     if (isNaN(User.phone.replace(/[\(\)\-\' ']/g, ''))) {
@@ -70,8 +64,6 @@ form.addEventListener("submit", function (event) {
 
         }
     }
-
-    console.log(User);
 });
 
 
@@ -128,8 +120,6 @@ function validateAge(dob) {//Ensure User is 18 or older
 
 
 function checkTRN(trn) {//Ensure TRN is unique
-
-    alert(trn.value);
     for (let index = 0; index < UsersArray.length; index++) {
 
 

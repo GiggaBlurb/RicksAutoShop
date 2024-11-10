@@ -1,39 +1,36 @@
 
-let attemps = 0;
-
-const form = document.getElementById('loginForm');
+const form = document.getElementById('reset');
 const trn = document.getElementById('trn');
-const Message = document.getElementById('Message');
+
 
 var UsersArray = [];
 if (localStorage.length != 0) {
     UsersArray = JSON.parse(localStorage.getItem("RegistrationData"));
 }
 
+console.log(UsersArray);
+
 
 form.addEventListener("submit", function (event) {
     event.preventDefault();
-    const usertrn = trn.value;
-    trnNUM=trn.value.replace(/[\(\)\-\' ']/g, '');
-    const userpassword = document.getElementById('password').value;
 
-    if (isNaN(trnNUM)) {
+    let password = document.getElementById('password').value
+    let trnNUm = trn.value.replace(/[\(\)\-\' ']/g, '');
+
+    if (isNaN(trnNUm)) {
         trn.value = '';
         displayMessage("TRN  is Invalid", "red");
         trn.style.borderColor = "red";
     }
     else {
-     
-        checkPassword(usertrn,userpassword);
-        attemps++;
+
+        setPassword(trn.value, password);
+
+        setTimeout(() => {
+            window.location.href = "../index.html"
+        }, 1000);
     }
 
-    if (attemps == 3) {
-        window.location.href = "./webpages/errorPage.html";
-
-    }
-
-   
 });
 
 
@@ -50,30 +47,28 @@ trn.addEventListener("keydown", (e) => {//format Trn input
 });
 
 
+
 function displayMessage(message, color) {
+
     Message.innerHTML = message;
     Message.style.color = color;
 }
 
 
-function checkPassword(trnNUm, pass) {
+function setPassword(trnNUm, pass) {
     
     for (let index = 0; index < UsersArray.length; index++) {
 
-        if (UsersArray[index].trn === trnNUm && UsersArray[index].password===pass) {
-            displayMessage("Login Successfull", "green");
+        if (UsersArray[index].trn === trnNUm) {
+            displayMessage("User Found Password Updated", "green");
+            UsersArray[index].password = pass;
+            localStorage.setItem("RegistrationData", JSON.stringify(UsersArray));
             trn.style.borderColor = "silver";
-            
-            setTimeout(() => {
-                window.location.href = "./webpages/homePage.html";
-            }, 1000);
-            
             return;
         }
         else {
-            displayMessage("Login Unsuccesfull", "red");
+            displayMessage("User Not found", "red");
             trn.style.borderColor = "red";
-           
         }
 
     }
