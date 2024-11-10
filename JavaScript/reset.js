@@ -4,7 +4,7 @@ const trn = document.getElementById('trn');
 
 
 var UsersArray = [];
-if (localStorage.length != 0) {
+if (localStorage.getItem("RegistrationData") !== null) {
     UsersArray = JSON.parse(localStorage.getItem("RegistrationData"));
 }
 

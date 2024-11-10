@@ -18,8 +18,10 @@ const User = {
 };
 
 var UsersArray = [];
-if (localStorage.length != 0) {
-    UsersArray=JSON.parse(localStorage.getItem("RegistrationData"));
+
+
+if (localStorage.getItem("RegistrationData") !== null) {
+    UsersArray = JSON.parse(localStorage.getItem("RegistrationData"));
 }
 
 
@@ -34,8 +36,8 @@ form.addEventListener("submit", function (event) {
     User.phone = document.getElementById('phone').value;
     User.email = document.getElementById('email').value
     User.password = document.getElementById('password').value
-    User.trn = trn.value;
-    trn.value = trn.value.replace(/[\(\)\-\' ']/g, '');
+    User.trn = document.getElementById("trn").value
+    trnNum = trn.value.replace(/[\(\)\-\' ']/g, '');
 
 
     if (isNaN(User.phone.replace(/[\(\)\-\' ']/g, ''))) {
@@ -46,22 +48,22 @@ form.addEventListener("submit", function (event) {
     else {
         phone.style.borderColor = "silver";
 
-        if (isNaN(trn.value)) {
+        if (isNaN(trnNum)) {
             trn.value = '';
             displayMessage("TRN  is Invalid", "red");
             trn.style.borderColor = "red";
         }
         else {
-            UsersArray.push(User);
-            localStorage.setItem("RegistrationData", JSON.stringify(UsersArray));
 
-            displayMessage("Successfull", "green");
-            trn.style.borderColor = "silver";
-            setTimeout(() => {
-                window.location.href = "../index.html"
-            }, 1000);
+            if (checkTRN(User.trn)) {
+                UsersArray.push(User);
+                localStorage.setItem("RegistrationData", JSON.stringify(UsersArray));
+                displayMessage("User is now Registered", "green");
+                setTimeout(() => {
+                    window.location.href = "../index.html"
+                }, 1000);
 
-
+            }
         }
     }
 });
@@ -115,18 +117,33 @@ function validateAge(dob) {//Ensure User is 18 or older
         displayMessage("User must be 18 or Older to enter", "red");
         dob.value = null;
     }
+    else{
+        displayMessage("User is "+age+" Years old", "green");
+    }
     dob.style.borderColor = (age < 18) ? "red" : "silver";
 }
 
 
-function checkTRN(trn) {//Ensure TRN is unique
+function checkTRN(userTrn) {//Ensure TRN is unique
+    let unique = true;
+
     for (let index = 0; index < UsersArray.length; index++) {
 
-
-        if (UsersArray[index].trn === trn.value) {
-            displayMessage("User is Already Registered", "red");
-            trn.value = null;
+        if (UsersArray[index].trn === userTrn) {
+            unique = false
         }
+    }
+
+    if (unique) {
+        displayMessage("New User", "green");
+        trn.style.borderColor = "silver";
 
     }
+    else {
+        displayMessage("User is Already Registered", "red");
+        trn.value = null;
+        trn.style.borderColor = "red";
+    }
+
+    return unique;
 }
