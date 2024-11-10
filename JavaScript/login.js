@@ -1,46 +1,42 @@
 
 let attemps = 0;
+const form = document.getElementById('loginForm');//get login form element
+const trn = document.getElementById('trn');// User trn input element
+const Message = document.getElementById('Message');//element to show any message
+var UsersArray = [];//declare userlist Array
 
-const form = document.getElementById('loginForm');
-const trn = document.getElementById('trn');
-const Message = document.getElementById('Message');
-
-var UsersArray = [];
-if (localStorage.getItem("RegistrationData") !== null) {
-    UsersArray = JSON.parse(localStorage.getItem("RegistrationData"));
+if (localStorage.getItem("RegistrationData") !== null) {//if User List is not null
+    UsersArray = JSON.parse(localStorage.getItem("RegistrationData"));//Get User List from local storage
 }
 
+form.addEventListener("submit", function (event) {//add function to submit button in form
+    event.preventDefault();//prevent default form actions
+    const usertrn = trn.value;//trn value as a string
+    trnNUM=trn.value.replace(/[\(\)\-\' ']/g, '');//trn value as a number
+    const userpassword = document.getElementById('password').value;//password user entered
 
-form.addEventListener("submit", function (event) {
-    event.preventDefault();
-    const usertrn = trn.value;
-    trnNUM=trn.value.replace(/[\(\)\-\' ']/g, '');
-    const userpassword = document.getElementById('password').value;
-
-    if (isNaN(trnNUM)) {
+    if (isNaN(trnNUM)) {//check if trn is valid
         trn.value = '';
         displayMessage("TRN  is Invalid", "red");
         trn.style.borderColor = "red";
     }
     else {
      
-        checkPassword(usertrn,userpassword);
-        attemps++;
+        checkPassword(usertrn,userpassword);//check if password matches user and redirect to homepage
+
+        attemps++;//increseae number of invalid attempts
     }
 
-    if (attemps == 3) {
-        window.location.href = "./webpages/errorPage.html";
+    if (attemps == 3) {//maximum number of invalid attempts reached
+        window.location.href = "./webpages/errorPage.html";//redirect to erro page
 
     }
-
-   
 });
 
 
-trn.addEventListener("keydown", (e) => {//format Trn input
+trn.addEventListener("keydown", (e) => {//format Trn input on key press
     if (e.key === "Backspace" || e.key === "Delete") return;
-
-
+    //add a dash (-) every third number
     if (e.target.value.length === 3) {
         trn.value = trn.value + "-";
     }
@@ -49,34 +45,31 @@ trn.addEventListener("keydown", (e) => {//format Trn input
     }
 });
 
-
-function displayMessage(message, color) {
+//display a message to the user
+function displayMessage(message, color) {//takes message as string and color of message
     Message.innerHTML = message;
     Message.style.color = color;
 }
 
-
-function checkPassword(trnNUm, pass) {
+function checkPassword(trnNUm, pass) {//check if password matches trn
     
-    for (let index = 0; index < UsersArray.length; index++) {
+    for (let index = 0; index < UsersArray.length; index++) {//iterate list of user
 
         if (UsersArray[index].trn === trnNUm && UsersArray[index].password===pass) {
+            //if user is found and password mathces
             displayMessage("Login Successfull", "green");
             trn.style.borderColor = "silver";
-
-            localStorage.setItem("currentUser",index);
-            
-            setTimeout(() => {
+            localStorage.setItem("currentUser",index);//save index of logged in user
+            setTimeout(() => {//wait 1 second the go to home page
                 window.location.href = "./webpages/homePage.html";
             }, 1000);
             
-            return;
+            return;//close function
         }
         else {
+            //if user is not found or password is invalid display error message
             displayMessage("Login Unsuccesfull", "red");
-            trn.style.borderColor = "red";
-           
+            trn.style.borderColor = "red";  
         }
-
     }
 }

@@ -2,7 +2,7 @@
 const currentUser = localStorage.getItem("currentUser");//index of cuurent user logged in
 
 var UsersArray = [];//declare userlist Array
-if (localStorage.getItem("RegistrationData") !== null) {//iff User List is not null
+if (localStorage.getItem("RegistrationData") !== null) {//if User List is not null
     UsersArray = JSON.parse(localStorage.getItem("RegistrationData"));//Get User List from local storage
 }
 const listStart = document.getElementById('start');//postion in document to insert products
