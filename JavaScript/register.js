@@ -5,7 +5,7 @@ const phone = document.getElementById('phone');
 const trn = document.getElementById('trn');
 
 const User = {
-    trn: '',
+    trn: "",
     firstName: "",
     lastname: "",
     dob: "",
@@ -13,7 +13,13 @@ const User = {
     phone: "",
     email: "",
     password: "",
-    cart: {},
+    cart: {
+        servicelist: [],
+        totalDiscount:0,
+        totalTax:0,
+        subTotal:0,
+        total: 0
+    },
     invoices: []
 };
 
@@ -115,8 +121,8 @@ function validateAge(dob) {//Ensure User is 18 or older
         displayMessage("User must be 18 or Older to enter", "red");
         dob.value = null;
     }
-    else{
-        displayMessage("User is "+age+" Years old", "green");
+    else {
+        displayMessage("User is " + age + " Years old", "green");
     }
     dob.style.borderColor = (age < 18) ? "red" : "silver";
 }
