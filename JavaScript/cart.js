@@ -21,7 +21,6 @@ function renderCartItems() {
        
         const itemContainer = document.createElement("div");
         itemContainer.classList.add("formContent");
-
         itemContainer.innerHTML = `
             <p><strong>Service:</strong> ${service.name}</p>
             <p><strong>Price:</strong> $${service.cost.toFixed(2)}</p>
