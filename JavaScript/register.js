@@ -126,7 +126,7 @@ function checkTRN(userTrn) {//Ensure TRN is unique
     let unique = true;//boolean to track if the trn is unique
 
     for (let index = 0; index < UsersArray.length; index++) {//iterate User list
-        if (UsersArray[index].trn === userTrn) {//if the trn is found user alread exist
+        if (UsersArray[index].trn === userTrn) {//if the trn is found user already exist
             unique = false;//unique is set to false
         }
     }
