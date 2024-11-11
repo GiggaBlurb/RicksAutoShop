@@ -50,6 +50,11 @@ h1 {
     margin-top: 150px;
 }
 
+#cartPage h1 {
+    color: aliceblue;
+    font-size: 40px;
+    margin-top: 150px;
+}
 
 fieldset {
     border: none;
@@ -215,8 +220,8 @@ body {
 #company,
 #service,
 #checkout,
-#aboutus,
-#cartPage {
+#aboutus, 
+#cartPage{
     padding: 10px 10px;
     font-size: 2vw;
     display: block;
@@ -408,4 +413,55 @@ li {
 
 .profileBox a:hover {
     color: #e58c1f;
+}
+
+
+/*------------------------------------------------------*/
+#cartTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+   
+}
+
+#cartTable th, #cartTable td {
+    border: 1px solid #000000;
+    padding: 8px;
+    text-align: center;
+}
+
+#cartTable th {
+    background-color: #1d2a35;
+    color: aliceblue;
+    font-weight: bold;
+}
+
+.controls{
+text-align: right;
+margin-top: 10px;
+}
+
+.controls pre{
+font-size: 18px;
+font-weight: bold;
+color: #eaefed;
+}
+
+.buttonAction{
+ background-color: #e58c1f;
+ color: black;
+ border: none;
+ padding: 10px 20px;
+ margin: 5px;
+ border-radius: 4px;
+ cursor: pointer;
+}
+
+.buttonAction:hover{
+background-color: gold;
+}
+
+#totalPrice {
+    color: #eaefed;
+    font-size: 18px;
 }
