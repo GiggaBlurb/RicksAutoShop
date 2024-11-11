@@ -76,7 +76,7 @@ for (let index = productList.length - 1; index >= 0; index--) {// for all produc
     chkbox.setAttribute("Onclick", "addToCart(this)");
     chkbox.classList.add("checkmark");
 
-    if(UsersArray[currentUser].cart.servicelist.find(o => o.name === name)){//if user Has already selected current service
+    if(   typeof  (UsersArray[currentUser].cart.servicelist.find(o => o.name === name)) !== 'undefined'   ){//if user Has already selected current service
         chkbox.checked=true;//select the checkbox to prevent duplicates
     }
 
