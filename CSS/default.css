@@ -25,6 +25,12 @@ h1 {
     /*image from https://www.dickysdoghouse.com/post/the-5-most-important-tools-for-a-mechanic*/
 }
 
+#stats{
+    background-color: rgba(255, 255, 255, 0.838);
+    background-image: none;
+    background-image: linear-gradient(to right, silver, white);
+}
+
 
 #homePage h1 {
     color: aliceblue;
@@ -209,7 +215,8 @@ body {
 #company,
 #service,
 #checkout,
-#aboutus {
+#aboutus,
+#cartPage {
     padding: 10px 10px;
     font-size: 2vw;
     display: block;
