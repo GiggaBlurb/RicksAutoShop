@@ -12,30 +12,6 @@ if (userArray && userArray[userIndex] && userArray[userIndex].cart) {
     cart = { servicelist: [], total: 0 };
 }
 
-// Function to display cart items on the page
-function renderCartItems() {
-    const cartTableBody = document.getElementById("itemsInCart");
-    cartTableBody.innerHTML = ""; // Clear any existing items
-
-    // Loop through each item in the cart's servicelist array and display it
-    cart.servicelist.forEach((service, index) => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-            <td>${service.name}</td>
-            <td>$${service.cost.toFixed(2)}</td>
-            <td><input type="number" value="1" min="1" onchange="updateQuantity(${index}, this.value)" /></td>
-            <td>$${service.cost.toFixed(2)}</td>
-            <td>$${service.discount.toFixed(2)}</td>
-            <td>$${service.tax.toFixed(2)}</td>
-            <td>$${(service.cost - service.discount + service.tax).toFixed(2)}</td>
-            <td><button onclick="removeItem(${index})">Remove</button></td>
-        `;
-        cartTableBody.appendChild(row);
-    });
-
-    updateTotal(); // Update the total display
-}
-
 function renderCartItems() {
     const cartTableBody = document.getElementById("itemsInCart");
     cartTableBody.innerHTML = ""; // Clear any existing items
