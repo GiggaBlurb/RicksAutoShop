@@ -417,17 +417,20 @@ li {
 
 
 /*------------------------------------------------------*/
+
 #cartTable {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
-   
+    background-color: #f0f0f0;
 }
 
 #cartTable th, #cartTable td {
-    border: 1px solid #000000;
+    border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
+    background-color: #ffffff;
+    
 }
 
 #cartTable th {

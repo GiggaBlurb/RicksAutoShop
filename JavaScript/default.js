@@ -1,84 +1,76 @@
-//Norman Martin-2300232
-//Tutor:Sirisha Badhika
-
-let totalCost = 0;
-let totalTax = 0;
-const taxRate = .15;
-let Cart = [];
-
 window.onload = function () {
-
     const page = document.getElementsByTagName('body')[0].id;
-
-    if (page == 'checkoutPage') {
-
-        let invoice = JSON.parse(localStorage.getItem('invoice'));
-
-        let date = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
-        let dateplace = document.getElementById('date');
-        let subplace = document.getElementById('subTotal');
-        let taxplace = document.getElementById('totalTax');
-        let discountplace = document.getElementById('totalDiscount');
-        let Gtotalplace = document.getElementById('GrandTotal');
-        const table = document.getElementById('Invoice');
-        let sub = 0;
-
-        for (let num = 0; num < invoice.length; num += 2) {
-
-            table.innerHTML += '  <tr class="name"><td> <p>' + invoice[num] + '</p>  </td> <td><p class="cost">$' + invoice[num + 1] + '</p> </td> </tr>';
-            sub += invoice[num + 1];
-        }
-        let totalTax = sub * taxRate;
-        let totalDiscount = sub * .05;
-        let grandTotal = (sub + totalTax) - totalDiscount;
-
-        dateplace.innerHTML = date;
-        subplace.innerHTML = sub;
-        taxplace.innerHTML = totalTax
-        discountplace.innerHTML = totalDiscount;
-        Gtotalplace.innerHTML = grandTotal;
-
+    if (page === 'checkoutPage') {
+        displayCartSummary();
     }
 };
 
+// Display cart summary
+function displayCartSummary() {
+    const userIndex = localStorage.getItem("currentUser");
+    const userArray = JSON.parse(localStorage.getItem("RegistrationData"));
+    const currentUser = userArray[userIndex];
+    const cart = currentUser.cart.servicelist;
 
-function cancel() {
-    let TotalCost = document.getElementById('TotalCost');
-    const Services = document.getElementsByClassName('serviceContent');
+    const table = document.getElementById("Invoice");
+    let subTotal = 0;
+    let totalTax = 0;
+    let totalDiscount = 0;
 
-    for (let index = 0; index < Services.length; index++) {
-        let subtotal = Services[index].getElementsByClassName('subtotal')[0];
-        let tax = Services[index].getElementsByClassName('tax')[0];
+    // Populate the table with cart items
+    cart.forEach((item) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${item.name}</td>
+            <td>$${item.cost.toFixed(2)}</td>
+            <td>$${item.discount.toFixed(2)}</td>
+            <td>$${item.tax.toFixed(2)}</td>
+            <td>$${(item.cost - item.discount + item.tax).toFixed(2)}</td>
+        `;
+        table.appendChild(row);
 
-        let check = Services[index].getElementsByClassName('checkmark');
-        for (let subindex = 0; subindex < check.length; subindex++) {
+        subTotal += item.cost;
+        totalDiscount += item.discount;
+        totalTax += item.tax;
+    });
 
-            if (check[subindex].checked == true) {
-                check[subindex].checked = false;
-                subtotal.innerHTML='';
-                tax.innerHTML ='';
-            }
-        }
-    }
-    totalCost = 0;
-    totalTax = 0;
-    TotalCost.innerHTML = totalCost + totalTax;
+    // Display totals
+    document.getElementById("subTotal").innerText = `$${subTotal.toFixed(2)}`;
+    document.getElementById("totalTax").innerText = `$${totalTax.toFixed(2)}`;
+    document.getElementById("totalDiscount").innerText = `$${totalDiscount.toFixed(2)}`;
+    document.getElementById("GrandTotal").innerText = `${(subTotal + totalTax - totalDiscount).toFixed(2)}`;
+    document.getElementById("date").innerText = new Date().toLocaleDateString();
 }
 
-function InvoiceCancel() {
-    localStorage.clear();
+// Confirm checkout and save invoice
+function confirmCheckout() {
+    const userIndex = localStorage.getItem("currentUser");
+    const userArray = JSON.parse(localStorage.getItem("RegistrationData"));
+    const currentUser = userArray[userIndex];
+    
+    const invoiceData = {
+        date: new Date().toLocaleDateString(),
+        items: currentUser.cart.servicelist,
+        total: currentUser.cart.total
+    };
+    
+    // Add this invoice to the user's invoices
+    currentUser.invoices.push(invoiceData);
+    
+    // Clear the cart
+    currentUser.cart.servicelist = [];
+    currentUser.cart.total = 0;
+    
+    // Update localStorage
+    userArray[userIndex] = currentUser;
+    localStorage.setItem("RegistrationData", JSON.stringify(userArray));
+    
+    alert("Checkout successful! Your invoice has been saved.");
     window.location.href = "homePage.html";
 }
 
-function exit() {
-
-    window.location.href = "homePage.html";
+// Cancel and return to cart page
+function cancelCheckout() {
+    window.location.href = "cartPage.html";
 }
-
-function checkout() {
-
-    localStorage.clear();
-    localStorage.setItem("invoice", JSON.stringify(Cart));
-}
-
 

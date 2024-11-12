@@ -12,31 +12,46 @@ if (userArray && userArray[userIndex] && userArray[userIndex].cart) {
     cart = { servicelist: [], total: 0 };
 }
 
+// Function to display cart items on the page
 function renderCartItems() {
     const cartTableBody = document.getElementById("itemsInCart");
     cartTableBody.innerHTML = ""; // Clear any existing items
+    let header;
 
-	// Loop through each item in the cart's servicelist array and display it
+    if (Object.keys(cart.servicelist).length !== 0) {
+        header = `
+        <th>Service Name</th>
+        <th>Service Cost</th>
+        <th>Service Discount</th>
+        <th>Service Tax</th>
+        <th>Service Total</th>
+        <th>Remove Service Total</th>`;
+
+    }
+    else {
+        header = '<th>No Service Selected</th>'
+    }
+
+    cartTableBody.innerHTML = header;
+
+
+    // Loop through each item in the cart's servicelist array and display it
     cart.servicelist.forEach((service, index) => {
-       
-        const itemContainer = document.createElement("div");
-        itemContainer.classList.add("formContent");
-        itemContainer.innerHTML = `
-            <p><strong>Service:</strong> ${service.name}</p>
-            <p><strong>Price:</strong> $${service.cost.toFixed(2)}</p>
-            <p><strong>Discount:</strong> $${service.discount.toFixed(2)}</p>
-            <p><strong>Tax:</strong> $${service.tax.toFixed(2)}</p>
-            <p><strong>Total:</strong> $${(service.cost - service.discount + service.tax).toFixed(2)}</p>
-            <input type="number" value="1" min="1" onchange="updateQuantity(${index}, this.value)" />
-            <button onclick="removeItem(${index})" class="buttonAction">Remove</button>
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            
+            <td>${service.name}</td>
+            <td>$${service.cost.toFixed(2)}</td>
+            <td>$${service.discount.toFixed(2)}</td>
+            <td>$${service.tax.toFixed(2)}</td>
+            <td>$${(service.cost - service.discount + service.tax).toFixed(2)}</td>
+            <td><button onclick="removeItem(${index})">Remove</button></td>
         `;
-
-        cartTableBody.appendChild(itemContainer);
+        cartTableBody.appendChild(row);
     });
 
     updateTotal(); // Update the total display
 }
-
 
 // Function to calculate and update the total price displayed in the cart
 function updateTotal() {
@@ -47,19 +62,16 @@ function updateTotal() {
     document.getElementById("totalPrice").textContent = totalPrice.toFixed(2);
 }
 
-// Function to handle quantity changes and update totals
-function updateQuantity(index, quantity) {
-    const item = cart.servicelist[index];
-    const originalCost = item.cost / quantity; // Calculate original cost
-    item.cost = originalCost * quantity; // Adjust cost by new quantity
-    item.discount = item.discountRate * item.cost;
-    item.tax = item.cost * 0.15; // Assuming tax rate is 15%
-    renderCartItems(); // Re-render the cart items with updated totals
-}
 
 // Function to remove an item from the cart
 function removeItem(index) {
-    cart.servicelist.splice(index, 1); // Remove selected item
+    let prodDetails = cart.servicelist[index];
+    cart.totalDiscount -= prodDetails.discount;
+    cart.totalTax -= prodDetails.tax;
+    cart.subTotal -= prodDetails.cost;
+    cart.total -= (prodDetails.cost + prodDetails.tax) - prodDetails.discount;
+    cart.servicelist.splice(index, 1); // Remove selected item from service list
+
     saveCartData(); // Save updated cart to localStorage
     renderCartItems(); // Refresh cart display
 }
@@ -67,6 +79,10 @@ function removeItem(index) {
 // Function to clear all items from the cart
 function cartClear() {
     cart.servicelist = []; // Empty the cart's service list
+    cart.totalDiscount = 0;
+    cart.totalTax = 0;
+    cart.subTotal = 0;
+    cart.total =0; 
     saveCartData();
     renderCartItems();
 }
@@ -79,7 +95,7 @@ function saveCartData() {
 
 // Function to handle checkout by saving cart to an invoice and redirecting
 function cartCheckout() {
-    localStorage.setItem("invoice", JSON.stringify(cart.servicelist));
+    ocalStorage.setItem("RegistrationData", JSON.stringify(userArray));
     window.location.href = "checkout.html";
 }
 

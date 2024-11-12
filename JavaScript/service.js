@@ -61,13 +61,11 @@ for (let index = productList.length - 1; index >= 0; index--) {// for all produc
 
     let brk = document.createElement("br");
 
-
     form.appendChild(brk);
     form.appendChild(brk);
     form.appendChild(brk);
     form.appendChild(brk);
     form.appendChild(brk);
-
 
     let chkbox = document.createElement("input");//checkbox input to select service
     chkbox.setAttribute("type", "checkbox");
@@ -76,7 +74,7 @@ for (let index = productList.length - 1; index >= 0; index--) {// for all produc
     chkbox.setAttribute("Onclick", "addToCart(this)");
     chkbox.classList.add("checkmark");
 
-    if (typeof UsersArray[currentUser] !== 'undefined'){
+    if (typeof UsersArray[currentUser].cart.servicelist !== 'undefined'){
 
         if(   UsersArray[currentUser].cart.servicelist.find(o => o.name === name)  ){//if user Has already selected current service
             chkbox.checked=true;//select the checkbox to prevent duplicates
@@ -124,7 +122,6 @@ function addToCart(button) {//when add to cart checkbox is clicked
         tax:prod.price*.15
 
     };
-
 
     if (button.checked) {//when product checkbox is selected
         //add service to cart and calculate tax,discount,subtoatal
