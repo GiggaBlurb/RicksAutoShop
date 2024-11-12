@@ -95,7 +95,7 @@ function saveCartData() {
 
 // Function to handle checkout by saving cart to an invoice and redirecting
 function cartCheckout() {
-    ocalStorage.setItem("RegistrationData", JSON.stringify(userArray));
+    localStorage.setItem("RegistrationData", JSON.stringify(userArray));
     window.location.href = "checkout.html";
 }
 

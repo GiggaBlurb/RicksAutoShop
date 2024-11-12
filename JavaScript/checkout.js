@@ -71,6 +71,7 @@ function confirmCheckout() {
 
 // Cancel and return to cart page
 function cancelCheckout() {
+    
     window.location.href = "cartPage.html";
 }
 

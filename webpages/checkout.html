@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Norman Martin-2300232">
     <link rel="stylesheet" href="../CSS/default.css">
-    <script src="../JavaScript/default.js"></script>
+    <script src="../JavaScript/checkout.js"></script>
 </head>
 <body id="checkoutPage" name="Top">
     <div class="headerMain headerBorder">
@@ -32,30 +32,7 @@
             </table>
             <p><strong>Grand Total:</strong> $<span id="GrandTotal"></span></p>
         </div>
-    </div>
-
-    <!-- Shipping Details Section -->
-    <div id="shippingDetails" class="box">
-        <h2 class="title">Shipping Details</h2>
-        <form id="shippingForm" class="formContent">
-            <label for="name">Name:</label>
-            <input class="input" type="text" id="name" required>
-            
-            <label for="address">Address:</label>
-            <input class="input" type="text" id="address" required>
-            
-            <label for="amount">Amount Being Paid:</label>
-            <input class="input" type="number" id="amount" required>
-        </form>
-    </div>
-
-    <!-- Action Buttons -->
-    <div class="controls">
-        <button class="buttonAction" onclick="confirmCheckout()">Confirm</button>
-        <button class="buttonAction" onclick="cancelCheckout()">Cancel</button>
-    </div>
-
-    <!-- Summary of Totals for JavaScript to Populate -->
+         <!-- Summary of Totals for JavaScript to Populate -->
     <div class="left">
         <table cellspacing="5" cellpadding="5">
             <tr>
@@ -83,6 +60,32 @@
             </tr>
         </table>
     </div>
+    </div>
+
+    <!-- Shipping Details Section -->
+    <div id="shippingDetails" class="box">
+        <h2 class="title">Shipping Details</h2>
+        <form id="shippingForm" class="formContent">
+            <label for="name">Name:</label>
+            <input class="input" type="text" id="name" required>
+            
+            <label for="address">Address:</label>
+            <input class="input" type="text" id="address" required>
+            
+            <label for="amount">Amount Being Paid:</label>
+            <input class="input" type="number" id="amount" required>
+        </form>
+    </div>
+
+    
+
+    <!-- Action Buttons -->
+    <div class="controls">
+        <button class="buttonAction" onclick="confirmCheckout()">Confirm</button>
+        <button class="buttonAction" onclick="cancelCheckout()">Cancel</button>
+    </div>
+
+   
 
     <div id="footer">
         <ul type="disc">
