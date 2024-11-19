@@ -1,7 +1,7 @@
 window.onload = function () {
     const page = document.getElementsByTagName('body')[0].id;
     if (page === 'checkoutPage') {
-        displayCartSummary();  
+        displayCartSummary();
     }
 };
 
@@ -10,7 +10,7 @@ function displayCartSummary() {
     const userIndex = localStorage.getItem("currentUser");
     const userArray = JSON.parse(localStorage.getItem("RegistrationData"));
     const currentUser = userArray[userIndex];
-    
+
     const invoiceTable = document.getElementById('Invoice');
     const cartItems = currentUser.cart.servicelist;
     let subtotal = 0, totalTax = 0, totalDiscount = 0;
@@ -18,17 +18,28 @@ function displayCartSummary() {
     // Clear previous items in the invoice table
     invoiceTable.innerHTML = "";
 
+    const header = document.createElement('tr');
+    header.innerHTML= `
+        <tr>
+        <th>Name</th>
+        <th>Cost</th>
+        <th>Discount</th>
+        <th>Tax</th>
+        </tr>
+    `;
+    invoiceTable.appendChild(header);
+
     cartItems.forEach(item => {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${item.name}</td>
-            <td>${item.quantity}</td>
-            <td>$${item.price}</td>
-            <td>${item.discount}%</td>
+            <td>$${item.cost}</td>
+            <td>$${item.discount}</td>
+            <td>$${item.tax}</td>
         `;
         invoiceTable.appendChild(row);
 
-        subtotal += item.price * item.quantity;
+        subtotal += item.cost;
         totalTax += item.tax;
         totalDiscount += item.discount;
     });
@@ -37,11 +48,15 @@ function displayCartSummary() {
     document.getElementById('subTotal').innerText = `$${subtotal}`;
     document.getElementById('totalTax').innerText = `$${totalTax}`;
     document.getElementById('totalDiscount').innerText = `$${totalDiscount}`;
-    document.getElementById('GrandTotal').innerText = `$${subtotal + totalTax - totalDiscount}`;
+    document.getElementById('GrandTotal').innerText = `${(subtotal + totalTax) - totalDiscount}`;
 
     // Display the current date
     const date = new Date().toLocaleDateString();
     document.getElementById('date').innerText = date;
+
+    //Display TRN
+
+    //Display Invoice Number
 }
 
 // Confirm checkout
