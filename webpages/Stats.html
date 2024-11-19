@@ -69,19 +69,12 @@
         <div class="chart-container">
             <h2>Frequency by Gender</h2>
             <canvas id="genderChart"></canvas>
-            <img src="../path/to/thinbar.jpg" width="100px" alt="Frequency bar image">
-            <div id="genderStats"></div>
         </div>
 
         <div class="chart-container">
             <h2>Frequency by Age Group</h2>
             <canvas id="ageChart"></canvas>
-            <img src="../path/to/thinbar.jpg" width="100px" alt="Frequency bar image">
-            <div id="ageStats"></div>
         </div>
-
-        <div id="invoiceContainer"></div>
-        <div id="userInvoiceContainer"></div>
     </main>
 
     <!-- Footer Section -->
@@ -93,24 +86,47 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Charts and Functions -->
+    <!-- JavaScript for Charts -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            ShowUserFrequency();
-            ShowInvoices();
-            GetUserInvoices();
-        });
-
         function ShowUserFrequency() {
+            // Retrieve data from localStorage
+            const userData = JSON.parse(localStorage.getItem("UserData")) || [];
+
+            // Initialize gender and age group counters
+            const genderCounts = { Male: 0, Female: 0, Other: 0 };
+            const ageGroupCounts = { "18-25": 0, "26-35": 0, "36-50": 0, "50+": 0 };
+
+            // Process each user to populate the counts
+            userData.forEach(user => {
+                // Count genders
+                if (genderCounts[user.gender] !== undefined) {
+                    genderCounts[user.gender]++;
+                }
+
+                // Count age groups
+                const age = user.age;
+                if (age >= 18 && age <= 25) {
+                    ageGroupCounts["18-25"]++;
+                } else if (age >= 26 && age <= 35) {
+                    ageGroupCounts["26-35"]++;
+                } else if (age >= 36 && age <= 50) {
+                    ageGroupCounts["36-50"]++;
+                } else if (age > 50) {
+                    ageGroupCounts["50+"]++;
+                }
+            });
+
+            // Prepare Gender Chart Data
             const genderData = {
-                labels: ['Male', 'Female', 'Other'],
+                labels: Object.keys(genderCounts),
                 datasets: [{
                     label: 'Number of Users',
-                    data: [35, 45, 20], // Sample data, replace with actual values
+                    data: Object.values(genderCounts),
                     backgroundColor: ['#3498db', '#e74c3c', '#9b59b6']
                 }]
             };
 
+            // Create Gender Chart
             const genderCtx = document.getElementById('genderChart').getContext('2d');
             new Chart(genderCtx, {
                 type: 'bar',
@@ -127,15 +143,17 @@
                 }
             });
 
+            // Prepare Age Group Chart Data
             const ageData = {
-                labels: ['18-25', '26-35', '36-50', '50+'],
+                labels: Object.keys(ageGroupCounts),
                 datasets: [{
                     label: 'Number of Users',
-                    data: [15, 25, 30, 10],
+                    data: Object.values(ageGroupCounts),
                     backgroundColor: '#2ecc71'
                 }]
             };
 
+            // Create Age Group Chart
             const ageCtx = document.getElementById('ageChart').getContext('2d');
             new Chart(ageCtx, {
                 type: 'bar',
@@ -153,30 +171,22 @@
             });
         }
 
-        function ShowInvoices() {
-            const invoices = JSON.parse(localStorage.getItem('AllInvoices') || '[]');
-            console.log(invoices);
-            let invoiceTable = '<table><tr><th>Invoice ID</th><th>Amount</th><th>Date</th></tr>';
-            invoices.forEach(invoice => {
-                invoiceTable += `<tr><td>${invoice.id}</td><td>${invoice.amount}</td><td>${invoice.date}</td></tr>`;
-            });
-            invoiceTable += '</table>';
-            document.getElementById('invoiceContainer').innerHTML = invoiceTable;
+       
+        if (!localStorage.getItem("UserData")) {
+            const exampleData = [
+                { gender: "Male", age: 23 },
+                { gender: "Female", age: 30 },
+                { gender: "Other", age: 45 },
+                { gender: "Male", age: 50 },
+                { gender: "Female", age: 26 },
+                { gender: "Male", age: 34 },
+                { gender: "Female", age: 52 },
+            ];
+            localStorage.setItem("UserData", JSON.stringify(exampleData));
         }
 
-        function GetUserInvoices() {
-            const registerData = JSON.parse(localStorage.getItem('RegisterData') || '{}');
-            const trn = registerData.trn;
-            const allInvoices = JSON.parse(localStorage.getItem('AllInvoices') || '[]');
-            const userInvoices = allInvoices.filter(invoice => invoice.trn === trn);
-            console.log(userInvoices);
-            let invoiceTable = '<table><tr><th>Invoice ID</th><th>Amount</th><th>Date</th></tr>';
-            userInvoices.forEach(invoice => {
-                invoiceTable += `<tr><td>${invoice.id}</td><td>${invoice.amount}</td><td>${invoice.date}</td></tr>`;
-            });
-            invoiceTable += '</table>';
-            document.getElementById('userInvoiceContainer').innerHTML = invoiceTable;
-        }
+        // Call the function to display charts
+        ShowUserFrequency();
     </script>
 </body>
 
