@@ -317,45 +317,24 @@ input:hover,button:hover {
     text-align: center;
 }
 
-li {
-    padding: 4px;
-    list-style-image: url('../images/nut.png');
-}
 
-#footer {
-    display: flex;
-    align-items: center;
+
+.footerMain {
+    background-color: #333;
     color: white;
-    font-size: 14px;
-    border-top: 2px solid gold;
-    margin: auto;
     padding: 20px;
-    margin-top: 100px;
-    width: 100%;
-    background-color: black;
-    position: absolute;
-    left: 0;
+    text-align: center;
 }
 
-#footer div {
-    font-size: 24px;
-    display: flex;
-    margin-top: 150px;
-    margin-left: 200px;
+.footerMain a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
 }
 
-#footer a {
-    padding-left: 50px;
-}
 
-.bottom {
-    justify-content: flex-end;
-}
-
-#footer li {
-
-    padding: 0;
-
+.footerMain a:hover{
+    color: #e58c1f;
 }
 
 .submitBtn {

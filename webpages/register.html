@@ -35,7 +35,8 @@
                 <label for="dob">
                     <span class="text">Date of Birth</span>
                 </label>
-                <input class="input" type="date" name="dob" id="dob" onchange="validateAge(this)" placeholder="DD/MM/YYYY"  required />
+                <input class="input" type="date" name="dob" id="dob" onchange="validateAge(this)"
+                    placeholder="DD/MM/YYYY" required />
 
                 <span class="text"> Please identify your gender:</span>
                 </br></br>
@@ -59,8 +60,8 @@
                     <span class="text">TRN</span>
                 </label>
                 <input class="input" type="text" name="trn" id="trn" minlength="11" maxlength="11"
-                    placeholder="000-000-000" onchange="checkTRN(this.value)"  required />
-                    
+                    placeholder="000-000-000" onchange="checkTRN(this.value)" required />
+
                 <label for="password">
                     <span class="text">Password</span>
                 </label>
@@ -73,32 +74,30 @@
                     <span class="text"> Register</span></button>
                 <button class="input" type="reset" value="LOGIN">
                     <span class="text"> Cancel</span></button>
-                    <div>
-                        <p class="text"> Go Back to  <a class="Registerlink" href="../index.html">Login<a></p>
-                    </div>
+                <div>
+                    <p class="text"> Go Back to <a class="Registerlink" href="../index.html">Login<a></p>
+                </div>
             </fieldset>
 
         </form>
     </div>
-
-    <div id="footer">
-        <ul type="disc">
-            <li> <b> Telephone:</b>1(<i>876</i>) 598-8988</li>
-            <li> <b>Email Address:</b>RicksAutoShop@gov.jm</li>
-            <li><b> Location:</b>
-                <ul>
-                    <li>207 Harbour Street</li>
-                    <li>Building H</li>
-                    <li>Montego Bay</li>
-                    <li>St. James</li>
-                </ul>
-            </li>
-        </ul>
-        <div>
-            <a href="#Top"> &#128285;</a>
-        </div>
-    </div>
     <script src="../JavaScript/register.js"></script>
+
+    <!-- Footer Section -->
+    <footer class="footerMain">
+             <p> <b> Telephone:</b>1(<i>876</i>) 598-8988</p>
+            <p> <b>Email Address:</b>RicksAutoShop@gov.jm</p>
+            <p><b> Location:</b>
+                <p>207 Harbour Street</p>
+                <p>Building H</p>
+                <p>Montego Bay</p>
+                <p>St. James</p>
+            </p>
+            <a href="#top">To Top</a> |
+            <a href="../index.html">Login</a>
+       
+    </footer>
+
 </body>
 
 </html>
