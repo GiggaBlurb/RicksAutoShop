@@ -12,7 +12,7 @@
     <style>
         /* Styling for layout and charts */
         body {
-            background-color: white; /* Set the background color to white */
+            background-color: white;
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -35,12 +35,6 @@
             width: 70%;
             margin: 20px auto;
             text-align: center;
-        }
-
-        .chart-container img {
-            display: block;
-            margin: 0 auto;
-            margin-top: 10px;
         }
 
         .footerMain {
@@ -76,13 +70,18 @@
             <h2>Frequency by Gender</h2>
             <canvas id="genderChart"></canvas>
             <img src="../path/to/thinbar.jpg" width="100px" alt="Frequency bar image">
+            <div id="genderStats"></div>
         </div>
 
         <div class="chart-container">
             <h2>Frequency by Age Group</h2>
             <canvas id="ageChart"></canvas>
             <img src="../path/to/thinbar.jpg" width="100px" alt="Frequency bar image">
+            <div id="ageStats"></div>
         </div>
+
+        <div id="invoiceContainer"></div>
+        <div id="userInvoiceContainer"></div>
     </main>
 
     <!-- Footer Section -->
@@ -94,10 +93,15 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Charts -->
+    <!-- JavaScript for Charts and Functions -->
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            ShowUserFrequency();
+            ShowInvoices();
+            GetUserInvoices();
+        });
+
         function ShowUserFrequency() {
-            // Gender Frequency Data
             const genderData = {
                 labels: ['Male', 'Female', 'Other'],
                 datasets: [{
@@ -107,7 +111,6 @@
                 }]
             };
 
-            // Configuring Gender Chart
             const genderCtx = document.getElementById('genderChart').getContext('2d');
             new Chart(genderCtx, {
                 type: 'bar',
@@ -115,28 +118,15 @@
                 options: {
                     responsive: true,
                     plugins: {
-                        legend: {
-                            display: true,
-                            position: 'top'
-                        },
-                        title: {
-                            display: true,
-                            text: 'User Distribution by Gender'
-                        }
+                        legend: { display: true, position: 'top' },
+                        title: { display: true, text: 'User Distribution by Gender' }
                     },
                     scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'Number of Users'
-                            }
-                        }
+                        y: { beginAtZero: true, title: { display: true, text: 'Number of Users' } }
                     }
                 }
             });
 
-            // Age Group Frequency Data
             const ageData = {
                 labels: ['18-25', '26-35', '36-50', '50+'],
                 datasets: [{
@@ -146,7 +136,6 @@
                 }]
             };
 
-            // Configuring Age Group Chart
             const ageCtx = document.getElementById('ageChart').getContext('2d');
             new Chart(ageCtx, {
                 type: 'bar',
@@ -154,30 +143,40 @@
                 options: {
                     responsive: true,
                     plugins: {
-                        legend: {
-                            display: true,
-                            position: 'top'
-                        },
-                        title: {
-                            display: true,
-                            text: 'User Distribution by Age Group'
-                        }
+                        legend: { display: true, position: 'top' },
+                        title: { display: true, text: 'User Distribution by Age Group' }
                     },
                     scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'Number of Users'
-                            }
-                        }
+                        y: { beginAtZero: true, title: { display: true, text: 'Number of Users' } }
                     }
                 }
             });
         }
 
-        // Call the function to display charts
-        ShowUserFrequency();
+        function ShowInvoices() {
+            const invoices = JSON.parse(localStorage.getItem('AllInvoices') || '[]');
+            console.log(invoices);
+            let invoiceTable = '<table><tr><th>Invoice ID</th><th>Amount</th><th>Date</th></tr>';
+            invoices.forEach(invoice => {
+                invoiceTable += `<tr><td>${invoice.id}</td><td>${invoice.amount}</td><td>${invoice.date}</td></tr>`;
+            });
+            invoiceTable += '</table>';
+            document.getElementById('invoiceContainer').innerHTML = invoiceTable;
+        }
+
+        function GetUserInvoices() {
+            const registerData = JSON.parse(localStorage.getItem('RegisterData') || '{}');
+            const trn = registerData.trn;
+            const allInvoices = JSON.parse(localStorage.getItem('AllInvoices') || '[]');
+            const userInvoices = allInvoices.filter(invoice => invoice.trn === trn);
+            console.log(userInvoices);
+            let invoiceTable = '<table><tr><th>Invoice ID</th><th>Amount</th><th>Date</th></tr>';
+            userInvoices.forEach(invoice => {
+                invoiceTable += `<tr><td>${invoice.id}</td><td>${invoice.amount}</td><td>${invoice.date}</td></tr>`;
+            });
+            invoiceTable += '</table>';
+            document.getElementById('userInvoiceContainer').innerHTML = invoiceTable;
+        }
     </script>
 </body>
 
