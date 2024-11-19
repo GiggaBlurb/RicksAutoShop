@@ -1,0 +1,193 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Norman Martin-2300232">
+    <title>Rick's Auto Shop - Statistics</title>
+    <link rel="icon" type="image/x-icon" href="../images/RickAutoIcon.png">
+    <link rel="stylesheet" href="../CSS/default.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Styling for layout and charts */
+        body {
+            background-color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .headerMain {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .headerMain a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+
+        .chart-container {
+            width: 70%;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .footerMain {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .footerMain a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body id="servicePage" name="Top">
+    <div class="headerMain headerBorder">
+        <div class="bannerLeft">
+            <a id="logo" href="../index.html"><img class="centerImg" src="../images/RickAutoLogo.png" alt="Image not found"></a>
+            <a id="company" href="../webpages/homePage.html">Rick's Auto Shop &#128191;</a>
+        </div>
+        <a id="service" href="services.html">Services &#128736;</a>
+        <a id="cartPage" href="cartPage.html">Cart &#128736;</a>
+        <a id="checkout" href="checkout.html">Checkout &#128722;</a>
+        <a id="aboutus" href="Stats.html">Statistics &#128231;</a>
+    </div>
+
+    <!-- Main Content Section for Charts -->
+    <main>
+        <div class="chart-container">
+            <h2>Frequency by Gender</h2>
+            <canvas id="genderChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <h2>Frequency by Age Group</h2>
+            <canvas id="ageChart"></canvas>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footerMain">
+        <div>
+            <p>Address Block</p>
+            <a href="#top">To Top</a> |
+            <a href="aboutUs.html">About Us</a>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Charts -->
+    <script>
+        function ShowUserFrequency() {
+            // Retrieve data from localStorage
+            const userData = JSON.parse(localStorage.getItem("UserData")) || [];
+
+            // Initialize gender and age group counters
+            const genderCounts = { Male: 0, Female: 0, Other: 0 };
+            const ageGroupCounts = { "18-25": 0, "26-35": 0, "36-50": 0, "50+": 0 };
+
+            // Process each user to populate the counts
+            userData.forEach(user => {
+                // Count genders
+                if (genderCounts[user.gender] !== undefined) {
+                    genderCounts[user.gender]++;
+                }
+
+                // Count age groups
+                const age = user.age;
+                if (age >= 18 && age <= 25) {
+                    ageGroupCounts["18-25"]++;
+                } else if (age >= 26 && age <= 35) {
+                    ageGroupCounts["26-35"]++;
+                } else if (age >= 36 && age <= 50) {
+                    ageGroupCounts["36-50"]++;
+                } else if (age > 50) {
+                    ageGroupCounts["50+"]++;
+                }
+            });
+
+            // Prepare Gender Chart Data
+            const genderData = {
+                labels: Object.keys(genderCounts),
+                datasets: [{
+                    label: 'Number of Users',
+                    data: Object.values(genderCounts),
+                    backgroundColor: ['#3498db', '#e74c3c', '#9b59b6']
+                }]
+            };
+
+            // Create Gender Chart
+            const genderCtx = document.getElementById('genderChart').getContext('2d');
+            new Chart(genderCtx, {
+                type: 'bar',
+                data: genderData,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: true, position: 'top' },
+                        title: { display: true, text: 'User Distribution by Gender' }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, title: { display: true, text: 'Number of Users' } }
+                    }
+                }
+            });
+
+            // Prepare Age Group Chart Data
+            const ageData = {
+                labels: Object.keys(ageGroupCounts),
+                datasets: [{
+                    label: 'Number of Users',
+                    data: Object.values(ageGroupCounts),
+                    backgroundColor: '#2ecc71'
+                }]
+            };
+
+            // Create Age Group Chart
+            const ageCtx = document.getElementById('ageChart').getContext('2d');
+            new Chart(ageCtx, {
+                type: 'bar',
+                data: ageData,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: true, position: 'top' },
+                        title: { display: true, text: 'User Distribution by Age Group' }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, title: { display: true, text: 'Number of Users' } }
+                    }
+                }
+            });
+        }
+
+       
+        if (!localStorage.getItem("UserData")) {
+            const exampleData = [
+                { gender: "Male", age: 23 },
+                { gender: "Female", age: 30 },
+                { gender: "Other", age: 45 },
+                { gender: "Male", age: 50 },
+                { gender: "Female", age: 26 },
+                { gender: "Male", age: 34 },
+                { gender: "Female", age: 52 },
+            ];
+            localStorage.setItem("UserData", JSON.stringify(exampleData));
+        }
+
+        // Call the function to display charts
+        ShowUserFrequency();
+    </script>
+</body>
+
+</html>
