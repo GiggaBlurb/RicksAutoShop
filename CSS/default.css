@@ -25,7 +25,7 @@ h1 {
     /*image from https://www.dickysdoghouse.com/post/the-5-most-important-tools-for-a-mechanic*/
 }
 
-#stats{
+#statspage{
     background-color: rgba(255, 255, 255, 0.838);
     background-image: none;
     background-image: linear-gradient(to right, silver, white);
@@ -55,6 +55,15 @@ h1 {
     font-size: 40px;
     margin-top: 150px;
 }
+
+
+#MainHeading{
+    font-size: 40px;
+    margin-top: 150px;
+    font-family: Geneva, Tahoma, sans-serif;
+    color: #1d2a35;
+}
+
 
 fieldset {
     border: none;
@@ -199,6 +208,7 @@ body {
     align-items: center;
     justify-content: space-between;
     background-image: url(../images/silver_metal.jpg);
+    font-size: 30px;
 }
 
 .headerBorder {
@@ -217,16 +227,7 @@ body {
     align-items: center;
 }
 
-#company,
-#service,
-#checkout,
-#aboutus, 
-#cartPage{
-    padding: 10px 10px;
-    font-size: 2vw;
-    display: block;
 
-}
 
 #company {
     padding-left: 50px;

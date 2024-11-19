@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Norman Martin-2300232">
+    <title>Rick's Auto Shop - Statistics</title>
+    <link rel="icon" type="image/x-icon" href="../images/RickAutoIcon.png">
+    <link rel="stylesheet" href="../CSS/default.css">
+    <style>
+        .histogram {
+            display: flex;
+            align-items: flex-end;
+            height: 200px;
+            border-left: 2px solid black;
+            border-bottom: 2px solid black;
+            padding: 10px;
+            width: 80%;
+        }
+
+        .bar {
+            width: 100px;
+            margin: 0 5px;
+            background-color: steelblue;
+            text-align: center;
+            color: white;
+        }
+
+        .HistogramHeaders{
+            display: flex;
+            padding: 10px;
+        }
+
+        .HistogramHeaders div {
+            padding-left: 50px;           
+        }
+    </style>
+</head>
+
+<body>
+
+    <body id="statspage" name="Top">
+        <div class="headerMain headerBorder">
+            <div class="bannerLeft">
+                <a id="logo" href="../index.html"><img class="centerImg" src="../images/RickAutoLogo.png"
+                        alt="Image not found"></a>
+                <a id="company" href="../webpages/homePage.html">Rick's Auto Shop &#128191;</a>
+            </div>
+            <a id="service" href="services.html">Services &#128736;</a>
+            <a id="cartPage" href="cartPage.html">Cart &#128736;</a>
+            <a id="checkout" href="checkout.html">Checkout &#128722;</a>
+            <a id="aboutus" href="Stats.html">Statistics &#128231;</a>
+        </div>
+
+        <h1 id="MainHeading">Stats Page</h1>
+        <div id="start" class="fadeBorder"></div>
+
+        
+        <div class="histogram">    
+            <div class="bar" style="height: 50px;">5</div>
+            <div class="bar" style="height: 100px;">10</div>
+            <div class="bar" style="height: 150px;">15</div>
+           
+        </div>
+
+        <div class="HistogramHeaders">
+            <div>Female</div>
+            <div>Male</div>
+            <div>Other</div>
+        </div>
+        <h1 class="heading">Frequency By Gender</h1>
+    </body>
+
+</html>
