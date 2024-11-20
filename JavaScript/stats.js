@@ -3,7 +3,7 @@ window.onload = function () {
     const page = document.getElementsByTagName('body')[0].id;
     if (page === 'statspage') {
         ShowUserFrequency();
-        GetUserInvoices();
+       ShowInvoices();
     }
 };
 
@@ -114,7 +114,7 @@ function ShowInvoices() {
     filteredInvoices.forEach(invoice => {
         const row = document.createElement("tr");
         row.innerHTML = `
-            <td>${invoice.id}</td>
+            <td>${invoice.InvoiceNumber}</td>
             <td>${invoice.trn}</td>
             <td>${invoice.date}</td>
             <td>${invoice.total}</td>
@@ -152,7 +152,7 @@ function SearchUserInvoices() {
     const userInvoices = allInvoices.filter(invoice => invoice.trn === userTRN);
     const filteredUserInvoices = searchQuery
         ? userInvoices.filter(invoice => 
-            invoice.id.toLowerCase().includes(searchQuery))
+            invoice.InvoiceNumber.toLowerCase().includes(searchQuery))
         : userInvoices;
 
     const tableBody = document.querySelector("#userInvoicesTable tbody");
