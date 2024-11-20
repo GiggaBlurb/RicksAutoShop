@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -16,67 +15,152 @@
             height: 200px;
             border-left: 2px solid black;
             border-bottom: 2px solid black;
+            justify-content: space-around;
         }
 
         .bar {
             width: 100px;
             margin: 0 5px;
             background-color: steelblue;
-    
             text-align: center;
         }
 
         .HistogramHeaders {
             display: flex;
+            justify-content: space-around;
             padding: 10px;
         }
 
         .HistogramHeaders div {
             padding-left: 50px;
         }
+
+        .heading {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .footerMain {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .footerMain a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+
     </style>
 </head>
 
-<body>
+<body id="statspage" name="Top">
 
-    <body id="statspage" name="Top">
-        <div class="header headerBorder">
-            <img src="../images/RickAutoLogo.webp" alt="Image not found">
-            <a href="../webpages/homePage.html">Rick's AutoShop &#128191;</a>
-            <div class="header-right">
-                <a href="services.html">Services &#128736;</a>
-                <a href="cartPage.html">Cart &#128297;</a>
-                <a href="checkout.html">Checkout &#129520; </a>
-                <a class="active" href="stats.html">Statistics &#128200;</a>
-            </div>
+    <div class="header headerBorder">
+        <img src="../images/RickAutoLogo.webp" alt="Image not found">
+        <a href="../webpages/homePage.html">Rick's AutoShop &#128191;</a>
+        <div class="header-right">
+            <a href="services.html">Services &#128736;</a>
+            <a href="cartPage.html">Cart &#128297;</a>
+            <a href="checkout.html">Checkout &#129520;</a>
+            <a class="active" href="stats.html">Statistics &#128200;</a>
         </div>
+    </div>
 
-        <h1>Stats Page</h1>
-        <div id="start" class="fadeBorder"></div>
-        <div id="GenderChart" class="histogram">
-        </div>
-        <div class="HistogramHeaders">
-            <div>Female</div>
-            <div>Male</div>
-            <div>Other</div>
-        </div>
-        <h1 class="heading">Frequency By Gender</h1>
+    <h1>Stats Page</h1>
+    <div id="start" class="fadeBorder"></div>
 
-        <script src="../JavaScript/stats.js"></script>
-        <!-- Footer Section -->
-        <footer class="footerMain">
+    <!-- Gender Frequency Chart -->
+    <div id="GenderChart" class="histogram"></div>
+    <div class="HistogramHeaders">
+        <div>Female</div>
+        <div>Male</div>
+        <div>Other</div>
+    </div>
+    <h1 class="heading">Frequency By Gender</h1>
 
-            <p> <b> Telephone:</b>1(<i>876</i>) 598-8988</p>
-            <p> <b>Email Address:</b>RicksAutoShop@gov.jm</p>
-            <p><b> Location:</b>
+    <!-- Age Group Frequency Chart -->
+    <div id="AgeChart" class="histogram"></div>
+    <div class="HistogramHeaders">
+        <div>18-25</div>
+        <div>26-35</div>
+        <div>36-50</div>
+        <div>50+</div>
+    </div>
+    <h1 class="heading">Frequency By Age Group</h1>
+
+    <script src="../JavaScript/stats.js"></script>
+
+    <footer class="footerMain">
+        <p><b>Telephone:</b>1(<i>876</i>) 598-8988</p>
+        <p><b>Email Address:</b>RicksAutoShop@gov.jm</p>
+        <p><b>Location:</b>
             <p>207 Harbour Street</p>
             <p>Building H</p>
             <p>Montego Bay</p>
             <p>St. James</p>
-            </p>
-            <a href="#top">To Top</a> |
-            <a href="homePage.html">HomePage</a>
-        </footer>
-    </body>
+        </p>
+        <a href="#top">To Top</a> |
+        <a href="homePage.html">HomePage</a>
+    </footer>
+
+    <!-- JavaScript for Charts -->
+    <script>
+        function ShowUserFrequency() {
+            // Retrieve user data from localStorage
+            const userData = JSON.parse(localStorage.getItem("UserData")) || [];
+
+            // Initialize counters for gender and age groups
+            const genderCounts = { Male: 0, Female: 0, Other: 0 };
+            const ageGroupCounts = { "18-25": 0, "26-35": 0, "36-50": 0, "50+": 0 };
+
+            // Loop through the user data and populate the counts
+            userData.forEach(user => {
+                // Count genders
+                if (user.gender && genderCounts[user.gender] !== undefined) {
+                    genderCounts[user.gender]++;
+                }
+
+                // Count age groups
+                const age = user.age;
+                if (age >= 18 && age <= 25) {
+                    ageGroupCounts["18-25"]++;
+                } else if (age >= 26 && age <= 35) {
+                    ageGroupCounts["26-35"]++;
+                } else if (age >= 36 && age <= 50) {
+                    ageGroupCounts["36-50"]++;
+                } else if (age > 50) {
+                    ageGroupCounts["50+"]++;
+                }
+            });
+
+            // Create Gender Chart
+            const genderContainer = document.getElementById('GenderChart');
+            Object.keys(genderCounts).forEach(gender => {
+                const bar = document.createElement('div');
+                bar.classList.add('bar');
+                bar.style.height = `${genderCounts[gender] * 30}px`;  
+                bar.innerHTML = genderCounts[gender];  
+                genderContainer.appendChild(bar);
+            });
+
+            // Create Age Group Chart
+            const ageContainer = document.getElementById('AgeChart');
+            Object.keys(ageGroupCounts).forEach(ageGroup => {
+                const bar = document.createElement('div');
+                bar.classList.add('bar');
+                bar.style.height = `${ageGroupCounts[ageGroup] * 30}px`;  
+                bar.innerHTML = ageGroupCounts[ageGroup];  
+                ageContainer.appendChild(bar);
+            });
+        }
+
+        // Call the function to display charts
+        ShowUserFrequency();
+    </script>
+
+</body>
 
 </html>
