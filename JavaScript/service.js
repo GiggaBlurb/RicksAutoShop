@@ -37,10 +37,10 @@ for (let index = productList.length - 1; index >= 0; index--) {// for all produc
     header.classList.add("title")
     header.innerHTML = name;
 
-    container.appendChild(header);
+    
 
     let right = document.createElement("div");
-    right.classList.add("right");
+    right.classList.add("box-left");
 
     let form = document.createElement("form");
     form.classList.add("serviceContent");
@@ -88,12 +88,12 @@ for (let index = productList.length - 1; index >= 0; index--) {// for all produc
     form.appendChild(brk);
     label.innerHTML = "Add To Cart"
     form.appendChild(label);
-
+    right.appendChild(header);
     right.appendChild(form);
     container.appendChild(right);
 
     let left = document.createElement("div");
-    left.classList.add("left");
+    left.classList.add("box-left");
 
     let image = document.createElement("img");
     image.setAttribute("src", imagesrc);
