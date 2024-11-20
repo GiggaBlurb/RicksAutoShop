@@ -28,13 +28,41 @@
         .HistogramHeaders {
             display: flex;
             justify-content: space-around;
-            align-items: flex-end;
+            padding: 10px;
         }
 
+        .HistogramHeaders div {
+            padding-left: 50px;
+        }
 
         .heading {
             text-align: center;
             margin-top: 30px;
+        }
+
+        .table-container {
+            margin: 30px auto;
+            width: 80%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
         }
 
         .footerMain {
@@ -65,10 +93,9 @@
         </div>
     </div>
 
-    <!-- Gender Frequency Chart -->
     <h1>Stats Page</h1>
-    <div id="start" class="fadeBorder">
-    </div>
+    <div id="start" class="fadeBorder"></div>
+
     <!-- Gender Frequency Chart -->
     <div id="GenderChart" class="histogram"></div>
     <div class="HistogramHeaders">
@@ -88,20 +115,167 @@
     </div>
     <h1 class="heading">Frequency By Age Group</h1>
 
-    <script src="../JavaScript/stats.js"></script>
+    <!-- Invoice Tables -->
+    <div class="table-container">
+        <!-- Show All Invoices -->
+        <h2>Show All Invoices</h2>
+        <input type="text" id="searchAllInvoices" placeholder="Search by TRN or Invoice ID">
+        <button onclick="ShowInvoices()">Search</button>
+        <table id="invoicesTable">
+            <thead>
+                <tr>
+                    <th>Invoice ID</th>
+                    <th>TRN</th>
+                    <th>Date</th>
+                    <th>Total Amount</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <!-- User-Specific Invoices -->
+        <h2>User-Specific Invoices</h2>
+        <input type="text" id="searchUserInvoices" placeholder="Search by Invoice ID">
+        <button onclick="SearchUserInvoices()">Search</button>
+        <table id="userInvoicesTable">
+            <thead>
+                <tr>
+                    <th>Invoice ID</th>
+                    <th>TRN</th>
+                    <th>Date</th>
+                    <th>Total Amount</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
 
     <footer class="footerMain">
         <p><b>Telephone:</b>1(<i>876</i>) 598-8988</p>
         <p><b>Email Address:</b>RicksAutoShop@gov.jm</p>
         <p><b>Location:</b>
-        <p>207 Harbour Street</p>
-        <p>Building H</p>
-        <p>Montego Bay</p>
-        <p>St. James</p>
+            <p>207 Harbour Street</p>
+            <p>Building H</p>
+            <p>Montego Bay</p>
+            <p>St. James</p>
         </p>
         <a href="#top">To Top</a> |
         <a href="homePage.html">HomePage</a>
     </footer>
+
+    <!-- JavaScript for Charts and Invoices -->
+    <script>
+        function ShowUserFrequency() {
+            const userData = JSON.parse(localStorage.getItem("UserData")) || [];
+            const genderCounts = { Male: 0, Female: 0, Other: 0 };
+            const ageGroupCounts = { "18-25": 0, "26-35": 0, "36-50": 0, "50+": 0 };
+
+            userData.forEach(user => {
+                if (user.gender && genderCounts[user.gender] !== undefined) {
+                    genderCounts[user.gender]++;
+                }
+
+                const age = user.age;
+                if (age >= 18 && age <= 25) ageGroupCounts["18-25"]++;
+                else if (age >= 26 && age <= 35) ageGroupCounts["26-35"]++;
+                else if (age >= 36 && age <= 50) ageGroupCounts["36-50"]++;
+                else if (age > 50) ageGroupCounts["50+"]++;
+            });
+
+            const genderContainer = document.getElementById('GenderChart');
+            Object.keys(genderCounts).forEach(gender => {
+                const bar = document.createElement('div');
+                bar.classList.add('bar');
+                bar.style.height = `${genderCounts[gender] * 30}px`;
+                bar.innerHTML = genderCounts[gender];
+                genderContainer.appendChild(bar);
+            });
+
+            const ageContainer = document.getElementById('AgeChart');
+            Object.keys(ageGroupCounts).forEach(ageGroup => {
+                const bar = document.createElement('div');
+                bar.classList.add('bar');
+                bar.style.height = `${ageGroupCounts[ageGroup] * 30}px`;
+                bar.innerHTML = ageGroupCounts[ageGroup];
+                ageContainer.appendChild(bar);
+            });
+        }
+
+        function ShowInvoices() {
+            const allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
+            const searchQuery = document.getElementById("searchAllInvoices").value.trim().toLowerCase();
+            const filteredInvoices = searchQuery
+                ? allInvoices.filter(invoice => 
+                    invoice.trn.toLowerCase().includes(searchQuery) ||
+                    invoice.id.toLowerCase().includes(searchQuery))
+                : allInvoices;
+
+            const tableBody = document.querySelector("#invoicesTable tbody");
+            tableBody.innerHTML = "";
+
+            filteredInvoices.forEach(invoice => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${invoice.id}</td>
+                    <td>${invoice.trn}</td>
+                    <td>${invoice.date}</td>
+                    <td>${invoice.total}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+
+            console.log(filteredInvoices);
+        }
+
+        function GetUserInvoices() {
+            const userTRN = localStorage.getItem("RegisterData") || "";
+            const allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
+            const userInvoices = allInvoices.filter(invoice => invoice.trn === userTRN);
+
+            const tableBody = document.querySelector("#userInvoicesTable tbody");
+            tableBody.innerHTML = "";
+
+            userInvoices.forEach(invoice => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${invoice.id}</td>
+                    <td>${invoice.trn}</td>
+                    <td>${invoice.date}</td>
+                    <td>${invoice.total}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function SearchUserInvoices() {
+            const searchQuery = document.getElementById("searchUserInvoices").value.trim().toLowerCase();
+            const allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
+            const userTRN = localStorage.getItem("RegisterData") || "";
+            const userInvoices = allInvoices.filter(invoice => invoice.trn === userTRN);
+            const filteredUserInvoices = searchQuery
+                ? userInvoices.filter(invoice => 
+                    invoice.id.toLowerCase().includes(searchQuery))
+                : userInvoices;
+
+            const tableBody = document.querySelector("#userInvoicesTable tbody");
+            tableBody.innerHTML = "";
+
+            filteredUserInvoices.forEach(invoice => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${invoice.id}</td>
+                    <td>${invoice.trn}</td>
+                    <td>${invoice.date}</td>
+                    <td>${invoice.total}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Call the initial functions
+        ShowUserFrequency();
+        GetUserInvoices();
+    </script>
 
 </body>
 
