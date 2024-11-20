@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -15,38 +16,37 @@
             height: 200px;
             border-left: 2px solid black;
             border-bottom: 2px solid black;
-            padding: 10px;
-            width: 80%;
+ 
         }
 
         .bar {
             width: 100px;
             margin: 0 5px;
             background-color: steelblue;
-            text-align: center;
-            color: white;
         }
 
-        .HistogramHeaders{
+        .HistogramHeaders {
             display: flex;
             padding: 10px;
         }
 
         .HistogramHeaders div {
-            padding-left: 50px;           
+            padding-left: 50px;
         }
     </style>
 </head>
 
 <body>
 
+<body>
+
     <body id="statspage" name="Top">
-        
+
         <div class="header headerBorder">
             <img src="../images/RickAutoLogo.webp" alt="Image not found">
             <a href="../webpages/homePage.html">Rick's AutoShop &#128191;</a>
             <div class="header-right">
-                <a  href="services.html">Services &#128736;</a>
+                <a href="services.html">Services &#128736;</a>
                 <a href="cartPage.html">Cart &#128297;</a>
                 <a href="checkout.html">Checkout &#129520; </a>
                 <a class="active" href="Stats.html">Statistics &#128200;</a>
@@ -56,9 +56,14 @@
         <h1>Stats Page</h1>
         <div id="start" class="fadeBorder"></div>
 
-        
-        <div id="GenderChart" class="histogram">    
+
+        <div id="GenderChart" class="histogram">
         </div>
+
+        <div class="HistogramHeaders">
+            <div>Female</div>
+            <div>Male</div>
+            <div>Other</div>
 
         <div class="HistogramHeaders">
             <div>Female</div>
@@ -68,8 +73,8 @@
         <h1 class="heading">Frequency By Gender</h1>
     </body>
     <script src="../JavaScript/stats.js"></script>
-     <!-- Footer Section -->
-     <footer class="footerMain">
+    <!-- Footer Section -->
+    <footer class="footerMain">
 
         <p> <b> Telephone:</b>1(<i>876</i>) 598-8988</p>
         <p> <b>Email Address:</b>RicksAutoShop@gov.jm</p>
