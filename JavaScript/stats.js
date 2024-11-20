@@ -100,50 +100,70 @@ function ShowUserFrequency() {
 
 
 function ShowInvoices() {
-    const allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
-    const searchQuery = document.getElementById("searchAllInvoices").value.trim().toLowerCase();
-    const filteredInvoices = searchQuery
-        ? allInvoices.filter(invoice => 
-            invoice.trn.toLowerCase().includes(searchQuery) ||
-            invoice.id.toLowerCase().includes(searchQuery))
-        : allInvoices;
+            const allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
+            const searchAll = document.getElementById("searchAllInvoices");
 
-    const tableBody = document.querySelector("#invoicesTable tbody");
-    tableBody.innerHTML = "";
+            function renderAllInvoices(filteredInvoices) {
+                const tableBody = document.querySelector("#allInvoicesTable tbody");
+                tableBody.innerHTML = "";
 
-    filteredInvoices.forEach(invoice => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-            <td>${invoice.id}</td>
-            <td>${invoice.trn}</td>
-            <td>${invoice.date}</td>
-            <td>${invoice.total}</td>
-        `;
-        tableBody.appendChild(row);
-    });
+                filteredInvoices.forEach(invoice => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${invoice.InvoiceNumber}</td>
+                        <td>${invoice.trn}</td>
+                        <td>${invoice.date}</td>
+                        <td>${invoice.total}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
 
-    console.log(filteredInvoices);
-}
+            renderAllInvoices(allInvoices);
 
-function GetUserInvoices() {
-    const userTRN = localStorage.getItem("RegisterData") || "";
-    const allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
-    const userInvoices = allInvoices.filter(invoice => invoice.trn === userTRN);
+            searchAll.addEventListener("input", () => {
+                const query = searchAll.value.toLowerCase();
+                const filteredInvoices = allInvoices.filter(invoice =>
+                    invoice.InvoiceNumber.toLowerCase().includes(query) ||
+                    invoice.trn.toLowerCase().includes(query)
+                );
+                renderAllInvoices(filteredInvoices);
+            });
+        }
 
-    const tableBody = document.querySelector("#userInvoicesTable tbody");
-    tableBody.innerHTML = "";
+        function GetUserInvoices() {
+            const allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
+            const loggedInTRN = "123456789"; // Example logged-in user's TRN
+            const userInvoices = allInvoices.filter(invoice => invoice.trn === loggedInTRN);
 
-    userInvoices.forEach(invoice => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-            <td>${invoice.id}</td>
-            <td>${invoice.trn}</td>
-            <td>${invoice.date}</td>
-            <td>${invoice.total}</td>
-        `;
-        tableBody.appendChild(row);
-    });
-}
+            const searchUser = document.getElementById("searchUserInvoices");
+
+            function renderUserInvoices(filteredInvoices) {
+                const tableBody = document.querySelector("#userInvoicesTable tbody");
+                tableBody.innerHTML = "";
+
+                filteredInvoices.forEach(invoice => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${invoice.InvoiceNumber}</td>
+                        <td>${invoice.trn}</td>
+                        <td>${invoice.date}</td>
+                        <td>${invoice.total}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
+
+            renderUserInvoices(userInvoices);
+
+            searchUser.addEventListener("input", () => {
+                const query = searchUser.value.toLowerCase();
+                const filteredInvoices = userInvoices.filter(invoice =>
+                    invoice.InvoiceNumber.toLowerCase().includes(query)
+                );
+                renderUserInvoices(filteredInvoices);
+            });
+        }
 
 function SearchUserInvoices() {
     const searchQuery = document.getElementById("searchUserInvoices").value.trim().toLowerCase();
