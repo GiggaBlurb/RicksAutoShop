@@ -16,6 +16,7 @@ function ShowUserFrequency() {
 
     let GenderChart = document.getElementById("GenderChart");
     let MaxBarHeight = 80;
+    let MinBarHeight =20;
 
     const genderdata = [0, 0, 0]
 
@@ -42,10 +43,57 @@ function ShowUserFrequency() {
     )
 
     function scale(unscaledNum) {
-        return (unscaledNum + 20 / MaxBarHeight) * MaxBarHeight;
+        return (unscaledNum + MinBarHeight / MaxBarHeight) * MaxBarHeight;
     }
 
 
+
+    /* JavaScript for Charts */
+
+    // Retrieve user data from localStorage
+    const userData = JSON.parse(localStorage.getItem("RegistrationData")) || [];  
+    let currentDate = new Date();//get current date
+  
+
+    // Initialize counters for gender and age groups
+    const genderCounts = { Male: 0, Female: 0, Other: 0 };
+    const ageGroupCounts = { "18-25": 0, "26-35": 0, "36-50": 0, "50+": 0 };
+
+    // Loop through the user data and populate the counts
+    userData.forEach(user => {
+        // Count genders
+        if (user.gender && genderCounts[user.gender] !== undefined) {
+            genderCounts[user.gender]++;
+        }
+
+
+        let bornDate = new Date(user.dob);//create ne Date from user input
+
+        // Count age groups
+        //age is not stored in Userdata use the dob to calculate
+        const age =Math.floor((currentDate - bornDate) / 3.1536E+10);//calculate users Age;
+
+        if (age >= 18 && age <= 25) {
+            ageGroupCounts["18-25"]++;
+        } else if (age >= 26 && age <= 35) {
+            ageGroupCounts["26-35"]++;
+        } else if (age >= 36 && age <= 50) {
+            ageGroupCounts["36-50"]++;
+        } else if (age > 50) {
+            ageGroupCounts["50+"]++;
+        }
+    });
+
+
+    // Create Age Group Chart
+    const ageContainer = document.getElementById('AgeChart');
+    Object.keys(ageGroupCounts).forEach(ageGroup => {
+        const bar = document.createElement('div');
+        bar.classList.add('bar');
+        bar.style.height = `${ageGroupCounts[ageGroup] * 30+MinBarHeight}px`;
+        bar.innerHTML = ageGroupCounts[ageGroup];
+        ageContainer.appendChild(bar);
+    });
 
 
 };
