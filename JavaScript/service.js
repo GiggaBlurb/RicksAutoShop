@@ -25,6 +25,7 @@ for (let index = productList.length - 1; index >= 0; index--) {// for all produc
     
     let name = productList[index].Name;//name of service 
     let cost = productList[index].price;//price of service
+    let discountrate = productList[index].drate;//discount rate of service
     let discription = productList[index].discription;// service discription
     let imagesrc = productList[index].image; //serivice image source
 
@@ -52,6 +53,16 @@ for (let index = productList.length - 1; index >= 0; index--) {// for all produc
 
     form.appendChild(p1);
 
+    let discount = document.createElement("p");
+    discount.classList.add("title");
+    discount.innerHTML = "Discount: $" + cost*discountrate;
+    form.appendChild(discount);
+
+    let tax = document.createElement("p");
+    tax.classList.add("title");
+    tax.innerHTML = "GCt 15%: $" + cost* .15;
+    form.appendChild(tax);
+
     let p2 = document.createElement("p");
     p2.classList.add("title");
 
@@ -59,13 +70,6 @@ for (let index = productList.length - 1; index >= 0; index--) {// for all produc
 
     form.appendChild(p2);
 
-    let brk = document.createElement("br");
-
-    form.appendChild(brk);
-    form.appendChild(brk);
-    form.appendChild(brk);
-    form.appendChild(brk);
-    form.appendChild(brk);
 
     let chkbox = document.createElement("input");//checkbox input to select service
     chkbox.setAttribute("type", "checkbox");
@@ -85,7 +89,6 @@ for (let index = productList.length - 1; index >= 0; index--) {// for all produc
 
     let label = document.createElement("label");
     label.setAttribute("for", index);
-    form.appendChild(brk);
     label.innerHTML = "Add To Cart"
     form.appendChild(label);
     right.appendChild(header);
