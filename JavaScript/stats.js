@@ -42,10 +42,10 @@ function ShowUserFrequency() {
     }
     )
 
+    //scales bar height 
     function scale(unscaledNum) {
         return (unscaledNum + MinBarHeight / MaxBarHeight) * MaxBarHeight;
     }
-
 
 
     /* JavaScript for Charts */
@@ -90,7 +90,7 @@ function ShowUserFrequency() {
     Object.keys(ageGroupCounts).forEach(ageGroup => {
         const bar = document.createElement('div');
         bar.classList.add('bar');
-        bar.style.height = `${ageGroupCounts[ageGroup] * 30+MinBarHeight}px`;
+        bar.style.height = scale(ageGroupCounts[ageGroup]) + "px";
         bar.innerHTML = ageGroupCounts[ageGroup];
         ageContainer.appendChild(bar);
     });

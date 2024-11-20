@@ -17,7 +17,7 @@ function displayCartSummary() {
 
     // Clear previous items in the invoice table
     invoiceTable.innerHTML = "";
-
+    //Create Table Header
     const header = document.createElement('tr');
     header.innerHTML= `
         <tr>
@@ -28,7 +28,7 @@ function displayCartSummary() {
         </tr>
     `;
     invoiceTable.appendChild(header);
-
+    
     cartItems.forEach(item => {
         const row = document.createElement('tr');
         row.innerHTML = `
