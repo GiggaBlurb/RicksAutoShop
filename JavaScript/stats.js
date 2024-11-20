@@ -94,6 +94,79 @@ function ShowUserFrequency() {
         bar.innerHTML = ageGroupCounts[ageGroup];
         ageContainer.appendChild(bar);
     });
+ function ShowInvoices() {
+            const allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
+            const searchQuery = document.getElementById("searchAllInvoices").value.trim().toLowerCase();
+            const filteredInvoices = searchQuery
+                ? allInvoices.filter(invoice => 
+                    invoice.trn.toLowerCase().includes(searchQuery) ||
+                    invoice.id.toLowerCase().includes(searchQuery))
+                : allInvoices;
 
+            const tableBody = document.querySelector("#invoicesTable tbody");
+            tableBody.innerHTML = "";
+
+            filteredInvoices.forEach(invoice => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${invoice.id}</td>
+                    <td>${invoice.trn}</td>
+                    <td>${invoice.date}</td>
+                    <td>${invoice.total}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+
+            console.log(filteredInvoices);
+        }
+
+        function GetUserInvoices() {
+            const userTRN = localStorage.getItem("RegisterData") || "";
+            const allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
+            const userInvoices = allInvoices.filter(invoice => invoice.trn === userTRN);
+
+            const tableBody = document.querySelector("#userInvoicesTable tbody");
+            tableBody.innerHTML = "";
+
+            userInvoices.forEach(invoice => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${invoice.id}</td>
+                    <td>${invoice.trn}</td>
+                    <td>${invoice.date}</td>
+                    <td>${invoice.total}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function SearchUserInvoices() {
+            const searchQuery = document.getElementById("searchUserInvoices").value.trim().toLowerCase();
+            const allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
+            const userTRN = localStorage.getItem("RegisterData") || "";
+            const userInvoices = allInvoices.filter(invoice => invoice.trn === userTRN);
+            const filteredUserInvoices = searchQuery
+                ? userInvoices.filter(invoice => 
+                    invoice.id.toLowerCase().includes(searchQuery))
+                : userInvoices;
+
+            const tableBody = document.querySelector("#userInvoicesTable tbody");
+            tableBody.innerHTML = "";
+
+            filteredUserInvoices.forEach(invoice => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${invoice.id}</td>
+                    <td>${invoice.trn}</td>
+                    <td>${invoice.date}</td>
+                    <td>${invoice.total}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Call the initial functions
+        ShowUserFrequency();
+        GetUserInvoices();
 
 };
