@@ -8,7 +8,7 @@ body {
     background-position: center;
     background-size: cover;
     background-color: #1d2a35;
-    background-image: url("../images/car_engine.jpg");
+    background-image: url("../images/car_engine.webp");
     /*image from https://www.flickr.com/photos/82404061@N04/40769679523*/
 }
 
@@ -30,7 +30,7 @@ body {
     background-color: #f1f1f1;
     align-items: center;
     padding: 20px 10px;
-    background-image: url(../images/silver_metal.jpg);
+    background-image: url(../images/silver_metal.webp);
 }
 
 .header a {
@@ -156,7 +156,7 @@ body {
 
 /*Login Page Background*/
 #loginPage {
-    background-image: url("../images/AutoMechanicBG.jpg");
+    background-image: url("../images/AutoMechanicBG.webp");
     /*image from https://www.dickysdoghouse.com/post/the-5-most-important-tools-for-a-mechanic*/
 }
 /*Stats Page Background*/

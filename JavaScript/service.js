@@ -9,14 +9,14 @@ const listStart = document.getElementById('start');//postion in document to inse
 
 //array of prodcut objects
 let productList = [
-    { Name: "Car Service & Maintenance", price: 5000,drate:.05 ,discription: "Standard Cleaning and Minor repairs ", image: "../images/Maintenance.jpg" },
-    { Name: "Oil Change", price: 3000,drate:.02 , discription: "Standard Oil Refill and System Maintenance", image: "../images/oil_change.jpg" },
-    { Name: "Wheel Alignment", price: 2400,drate:.03, discription: "Wheel checks and Maintenance", image: "../images/wheel.jpg" },
-    { Name: "Battery Replacement", price: 4000,drate:.04, discription: "Battery refill and Replacement", image: "../images/battery.jpg" },
-    { Name: "Brake Service", price: 3500,drate:.02, discription: "Standard Brake Service and Repairs ", image: "../images/brake.jpg" },
-    { Name: "Coolant System", price: 7700,drate:.012, discription: "Standard Coolant Servicing and Maintenance ", image: "../images/coolant.jpg" },
-    { Name: "Window Service", price: 1200,drate:.05 ,discription: "Window Repair and Tint", image: "../images/window.jpg" },
-    { Name: "Alarm System", price: 30700,drate:0.1, discription: "Window Repair and Tint", image: "../images/alarm.jpg" }
+    { Name: "Car Service & Maintenance", price: 5000,drate:.05 ,discription: "Standard Cleaning and Minor repairs ", image: "../images/Maintenance.webp" },
+    { Name: "Oil Change", price: 3000,drate:.02 , discription: "Standard Oil Refill and System Maintenance", image: "../images/oil_change.webp" },
+    { Name: "Wheel Alignment", price: 2400,drate:.03, discription: "Wheel checks and Maintenance", image: "../images/wheel.webp" },
+    { Name: "Battery Replacement", price: 4000,drate:.04, discription: "Battery refill and Replacement", image: "../images/battery.webp" },
+    { Name: "Brake Service", price: 3500,drate:.02, discription: "Standard Brake Service and Repairs ", image: "../images/brake.webp" },
+    { Name: "Coolant System", price: 7700,drate:.012, discription: "Standard Coolant Servicing and Maintenance ", image: "../images/coolant.webp" },
+    { Name: "Window Service", price: 1200,drate:.05 ,discription: "Window Repair and Tint", image: "../images/window.webp" },
+    { Name: "Alarm System", price: 30700,drate:0.1, discription: "Window Repair and Tint", image: "../images/alarm.webp" }
 ];
 //save product to local storage
 localStorage.setItem("AllProducts", JSON.stringify(productList));
