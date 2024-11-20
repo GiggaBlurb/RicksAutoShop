@@ -1,90 +1,122 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
     <title>Rick's Auto Shop Checkout</title>
-    <link rel="icon" type="image/x-icon" href="../images/RickAutoIcon.png">
+    <link rel="icon" type="image/x-icon" href="../images/RickAutoIcon.webp">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Norman Martin-2300232">
     <link rel="stylesheet" href="../CSS/default.css">
     <script src="../JavaScript/checkout.js"></script>
 </head>
+
 <body id="checkoutPage" name="Top">
-    <div class="headerMain headerBorder">
-        <div class="bannerLeft">
-            <a id="logo" href="../index.html"><img class="centerImg" src="../images/RickAutoLogo.png" alt="Image not found"></a>
-            <a id="company" href="../webpages/homePage.html">Rick's Auto Shop &#128191;</a>
+
+    <div class="header headerBorder">
+        <img src="../images/RickAutoLogo.webp" alt="Image not found">
+        <a href="../webpages/homePage.html">Rick's AutoShop &#128191;</a>
+        <div class="header-right">
+            <a href="services.html">Services &#128736;</a>
+            <a href="cartPage.html">Cart &#128297;</a>
+            <a class="active" href="checkout.html">Checkout &#129520; </a>
+            <a href="Stats.html">Statistics &#128200;</a>
         </div>
-        <a id="service" href="services.html">Services &#128736;</a>
-        <a id="cartPage" href="cartPage.html">Cart &#128736;</a>
-        <a id="checkout" href="checkout.html">Checkout &#128722;</a>
-        <a id="aboutus" href="Stats.html">Statistics &#128231;</a>
     </div>
 
-    <h1 class="heading">Checkout</h1>
+    <h1 >Checkout</h1>
     <div class="fadeBorder"></div>
 
     <!-- Cart Summary Section -->
     <div id="checkoutSummary" class="box">
-        <h2 class="title">Cart Summary</h2>
-        <div id="cartSummary" class="right">
+        
+        <div id="cartSummary" class="box-left">
+            <h2 class="title">Cart Summary</h2>
             <table id="Invoice" cellspacing="5" cellpadding="5">
                 <!-- Items will be dynamically populated here -->
             </table>
         </div>
-         <!-- Summary of Totals for JavaScript to Populate -->
-    <div class="left">
-        <table cellspacing="5" cellpadding="5">
-            <tr>
-                <td><p>Invoice Number</p></td>
-                <td><p id="invoiceNumber"></p></td>
-           </tr>
-            <tr>
-              <td><p>TRN</p></td>
-              <td><p id="trn"></p></td>
-            </tr>
-            <tr>
-                <td><p>Date</p></td>
-                <td><p id="date"></p></td>
-            </tr>
-            <tr>
-                <td><p>Sub Total</p></td>
-                <td><p id="subTotal"></p></td>
-            </tr>
-            <tr>
-                <td><p>Total Tax</p></td>
-                <td><p id="totalTax"></p></td>
-            </tr>
-            <tr>
-                <td><p>Total Discount</p></td>
-                <td><p id="totalDiscount"></p></td>
-            </tr>
-            <tr>
-                <td><p><strong>Grand Total:</strong></p></td>
-                <td><p id="GrandTotal"></p></td>
-            </tr>
-            <tr>
-                <td colspan="2" id="message"></td>
-            </tr>
-        </table>
-    </div>
+        <!-- Summary of Totals for JavaScript to Populate -->
+        <div class="box-right">
+            <table cellspacing="5" cellpadding="5">
+                <tr>
+                    <td>
+                        <p>Invoice Number</p>
+                    </td>
+                    <td>
+                        <p id="invoiceNumber"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>TRN</p>
+                    </td>
+                    <td>
+                        <p id="trn"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Date</p>
+                    </td>
+                    <td>
+                        <p id="date"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Sub Total</p>
+                    </td>
+                    <td>
+                        <p id="subTotal"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Total Tax</p>
+                    </td>
+                    <td>
+                        <p id="totalTax"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Total Discount</p>
+                    </td>
+                    <td>
+                        <p id="totalDiscount"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><strong>Grand Total:</strong></p>
+                    </td>
+                    <td>
+                        <p id="GrandTotal"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" id="message"></td>
+                </tr>
+            </table>
+        </div>
     </div>
 
     <!-- Shipping Details Section -->
     <div id="shippingDetails" class="box">
         <h2 class="title">Shipping Details</h2>
-        <form id="shippingForm" class="formContent">
+        <form id="shippingForm">
             <label for="name">Name:</label>
             <input class="input" type="text" id="name" required>
-            
+
             <label for="address">Address:</label>
             <input class="input" type="text" id="address" required>
-            
+
             <label for="amount">Amount Being Paid:</label>
             <input class="input" type="number" id="amount" required>
         </form>
     </div>
 
-    
+
 
     <!-- Action Buttons -->
     <div class="controls">
@@ -92,18 +124,21 @@
         <button class="buttonAction" onclick="cancelCheckout()">Cancel</button>
     </div>
 
-   
 
-    <div id="footer">
-        <ul type="disc">
-            <li><b>Telephone:</b> 1(876) 598-8988</li>
-            <li><b>Email Address:</b> RicksAutoShop@gov.jm</li>
-            <li><b>Location:</b> 207 Harbour Street, Building H, Montego Bay, St. James</li>
-        </ul>
-        <div>
-            <a href="Stats.html"><u>Statistics</u></a><br>
-            <a href="#Top"> &#128285;</a>
-        </div>
-    </div>
+
+    <!-- Footer Section -->
+    <footer class="footerMain">
+        <p> <b> Telephone:</b>1(<i>876</i>) 598-8988</p>
+        <p> <b>Email Address:</b>RicksAutoShop@gov.jm</p>
+        <p><b> Location:</b>
+        <p>207 Harbour Street</p>
+        <p>Building H</p>
+        <p>Montego Bay</p>
+        <p>St. James</p>
+        </p>
+        <a href="#top">To Top</a> |
+        <a href="stats.html">Statistics</a>
+    </footer>
 </body>
+
 </html>
