@@ -15,6 +15,9 @@ function displayCartSummary() {
     const cartItems = currentUser.cart.servicelist;
     let subtotal = 0, totalTax = 0, totalDiscount = 0;
 
+    //generate  invoice number
+    const newInvoiceNumber= generateInvoiceNumber();
+
     // Clear previous items in the invoice table
     invoiceTable.innerHTML = "";
     //Create Table Header
@@ -28,7 +31,7 @@ function displayCartSummary() {
         </tr>
     `;
     invoiceTable.appendChild(header);
-    
+
     cartItems.forEach(item => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -55,8 +58,10 @@ function displayCartSummary() {
     document.getElementById('date').innerText = date;
 
     //Display TRN
+    document.getElementById('trn').innerHTML=currentUser.trn;
 
     //Display Invoice Number
+    document.getElementById("invoiceNumber").innerHTML=newInvoiceNumber;
 }
 
 // Confirm checkout
@@ -73,7 +78,7 @@ function confirmCheckout() {
             address: document.getElementById('address').value,
             amountPaid: document.getElementById('amount').value
         },
-        invoiceNumber: generateInvoiceNumber(),
+        invoiceNumber: newInvoiceNumber,
         trn: currentUser.trn,
         items: currentUser.cart.servicelist,
         subtotal: document.getElementById('subTotal').innerText,
