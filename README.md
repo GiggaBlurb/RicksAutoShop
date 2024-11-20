@@ -1,3 +1,3 @@
 # Rick's AutoShop
-# hosted at https://github.com/DjFuryX/RickAutoShop.github.io
+# hosted at https://djfuryx.github.io/RicksAutoShop
 
