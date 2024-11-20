@@ -15,7 +15,7 @@ function ShowUserFrequency() {
 
 
     let GenderChart = document.getElementById("GenderChart");
-    let MaxBarHeight = 50;
+    let MaxBarHeight = 80;
 
     const genderdata = [0, 0, 0]
 
@@ -42,7 +42,7 @@ function ShowUserFrequency() {
     )
 
     function scale(unscaledNum) {
-        return (unscaledNum + 10 / MaxBarHeight) * MaxBarHeight;
+        return (unscaledNum + 20 / MaxBarHeight) * MaxBarHeight;
     }
 
 
