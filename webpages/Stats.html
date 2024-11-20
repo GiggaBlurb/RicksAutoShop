@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
 
 <head>
@@ -8,21 +8,32 @@
     <title>Rick's Auto Shop - Statistics</title>
     <link rel="icon" type="image/x-icon" href="../images/RickAutoIcon.webp">
     <link rel="stylesheet" href="../CSS/default.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        .histogram {
-            display: flex;
-            align-items: flex-end;
-            height: 200px;
-            border-left: 2px solid black;
-            border-bottom: 2px solid black;
-            padding: 10px;
-            width: 80%;
+        /* Styling for layout and charts */
+        body {
+            background-color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
-        .bar {
-            width: 100px;
-            margin: 0 5px;
-            background-color: steelblue;
+        .headerMain {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .headerMain a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+
+        .chart-container {
+            width: 70%;
+            margin: 20px auto;
             text-align: center;
             color: white;
         }
@@ -60,28 +71,21 @@
         <div id="GenderChart" class="histogram">
         </div>
 
-        <div class="HistogramHeaders">
-            <div>Female</div>
-            <div>Male</div>
-            <div>Other</div>
+        <div class="chart-container">
+            <h2>Frequency by Age Group</h2>
+            <canvas id="ageChart"></canvas>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footerMain">
+        <div>
+            <p>Address Block</p>
+            <a href="#top">To Top</a> |
+            <a href="aboutUs.html">About Us</a>
         </div>
         <h1 class="heading">Frequency By Gender</h1>
     </body>
     <script src="../JavaScript/stats.js"></script>
-    <!-- Footer Section -->
-    <footer class="footerMain">
-
-        <p> <b> Telephone:</b>1(<i>876</i>) 598-8988</p>
-        <p> <b>Email Address:</b>RicksAutoShop@gov.jm</p>
-        <p><b> Location:</b>
-        <p>207 Harbour Street</p>
-        <p>Building H</p>
-        <p>Montego Bay</p>
-        <p>St. James</p>
-        </p>
-        <a href="#top">To Top</a> |
-        <a href="homePage.html">HomePage</a>
-    </footer>
-</body>
 
 </html>
