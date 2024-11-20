@@ -130,6 +130,7 @@ body {
     text-align: center;
 }
 @media screen and (max-width: 500px) {
+    /*Allow elements to stack once screen wiidth is below 500px*/
     .header a,.box-left {
         float: none;
         display: block;
