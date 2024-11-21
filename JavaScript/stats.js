@@ -15,6 +15,7 @@ window.onload = function () {
     }
 };
 
+// Function to show user frequency data (gender and age group)
 function ShowUserFrequency() {
 
     let GenderChart = document.getElementById("GenderChart");
@@ -62,9 +63,7 @@ function ShowUserFrequency() {
     const genderCounts = { Male: 0, Female: 0, Other: 0 };
     const ageGroupCounts = { "18-25": 0, "26-35": 0, "36-50": 0, "50+": 0 };
 
-    // Loop through the user data and populate the counts
     userData.forEach(user => {
-        // Count genders
         if (user.gender && genderCounts[user.gender] !== undefined) {
             genderCounts[user.gender]++;
         }
@@ -93,7 +92,7 @@ function ShowUserFrequency() {
     Object.keys(ageGroupCounts).forEach(ageGroup => {
         const bar = document.createElement('div');
         bar.classList.add('bar');
-        bar.style.height = scale(ageGroupCounts[ageGroup]) + "px";
+        bar.style.height = `${ageGroupCounts[ageGroup] * 30}px`;
         bar.innerHTML = ageGroupCounts[ageGroup];
         ageContainer.appendChild(bar);
     });
