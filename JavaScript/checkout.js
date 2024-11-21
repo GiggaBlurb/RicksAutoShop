@@ -20,8 +20,6 @@ function displayCartSummary() {
     const cartItems = currentUser.cart.servicelist;
     let subtotal = 0, totalTax = 0, totalDiscount = 0;
 
-  
-
     // Clear previous items in the invoice table
     invoiceTable.innerHTML = "";
     //Create Table Header

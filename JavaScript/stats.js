@@ -18,8 +18,8 @@ window.onload = function () {
 function ShowUserFrequency() {
 
     let GenderChart = document.getElementById("GenderChart");
-    let MaxBarHeight = 80;
-    let MinBarHeight = 20;
+    const MaxBarHeight = 180;
+    const MinBarHeight = 20;
 
     const genderdata = [0, 0, 0]
 
@@ -36,43 +36,39 @@ function ShowUserFrequency() {
 
     }
 
+    genderdata[2]=10;
     genderdata.forEach(Total => {
         const bar = document.createElement('div');
         bar.classList.add('bar');
-        bar.style.height = scale(Total) + "px";
+        bar.style.height = scale(Total,genderdata) + "px";
         bar.innerHTML = Total;
         GenderChart.append(bar);
     }
-    )
 
+
+    )
     //scales bar height 
-    function scale(unscaledNum) {
-        return (unscaledNum + MinBarHeight / MaxBarHeight) * MaxBarHeight;
+    function scale(unscaledNum,values) {
+        
+        var min=Math.min.apply(null, values);
+        var max=Math.max.apply(null,values);
+        return (MaxBarHeight - MinBarHeight) * (unscaledNum - min) / (max - min) + MinBarHeight;
     }
 
 
-    /* JavaScript for Charts */
 
-    // Retrieve user data from localStorage
-    const userData = JSON.parse(localStorage.getItem("RegistrationData")) || [];
+    /* JavaScript for Charts */
     let currentDate = new Date();//get current date
 
 
-    // Initialize counters for gender and age groups
-    const genderCounts = { Male: 0, Female: 0, Other: 0 };
+    // Initialize counters forand age groups
     const ageGroupCounts = { "18-25": 0, "26-35": 0, "36-50": 0, "50+": 0 };
 
     // Loop through the user data and populate the counts
-    userData.forEach(user => {
-        // Count genders
-        if (user.gender && genderCounts[user.gender] !== undefined) {
-            genderCounts[user.gender]++;
-        }
-
-
+    UsersArray.forEach(user => {
         let bornDate = new Date(user.dob);//create ne Date from user input
-
         // Count age groups
+        
         //age is not stored in Userdata use the dob to calculate
         const age = Math.floor((currentDate - bornDate) / 3.1536E+10);//calculate users Age;
 
@@ -87,13 +83,14 @@ function ShowUserFrequency() {
         }
     });
 
+    
 
     // Create Age Group Chart
     const ageContainer = document.getElementById('AgeChart');
     Object.keys(ageGroupCounts).forEach(ageGroup => {
         const bar = document.createElement('div');
         bar.classList.add('bar');
-        bar.style.height = scale(ageGroupCounts[ageGroup]) + "px";
+        bar.style.height = scale(ageGroupCounts[ageGroup],Object.values(ageGroupCounts)) + "px";
         bar.innerHTML = ageGroupCounts[ageGroup];
         ageContainer.appendChild(bar);
     });
@@ -131,14 +128,14 @@ function ShowInvoices() {
 function GetUserInovices() {
     let userTRN = UsersArray[currentUser].trn;
     const allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
-    userInvoice=[];
+    userInvoice = [];
     const invoiceNum = document.getElementById("searchUserInvoices").value || "novalue";
 
     if (invoiceNum === "novalue") {//SHow all invoices  for current User
-       userInvoice= allInvoices.filter(invoice => invoice.trn.includes(userTRN));   
+        userInvoice = allInvoices.filter(invoice => invoice.trn.includes(userTRN));
     }
     else {//filet byy customer inoice number
-      userInvoice=  allInvoices.filter(invoice => invoice.invoiceNumber === invoiceNum);
+        userInvoice = allInvoices.filter(invoice => invoice.invoiceNumber === invoiceNum);
     }
 
     const tableBody = document.getElementById("userInvoicesTable");

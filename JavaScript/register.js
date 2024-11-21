@@ -109,6 +109,8 @@ function validateAge(dob) {//Ensure User is 18 or older
     let currentDate = new Date();//get current date
     let bornDate = new Date(dob.value);//create ne Date from user input
 
+    //date is stored in miliseconds so to convert to years we divide
+    //by the number of milliseconds in a year  3.1536E+10
     let age = Math.floor((currentDate - bornDate) / 3.1536E+10);//calculate users Age
 
     if (age < 18) {//if user is under 18 prevent login
