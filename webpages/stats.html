@@ -8,6 +8,7 @@
     <title>Rick's Auto Shop - Statistics</title>
     <link rel="icon" type="image/x-icon" href="../images/RickAutoIcon.webp">
     <link rel="stylesheet" href="../CSS/default.css">
+    <script src="../JavaScript/stats.js"></script>
     <style>
         .histogram {
             display: flex;
@@ -28,7 +29,7 @@
         .HistogramHeaders {
             display: flex;
             justify-content: space-around;
-            padding-top: 10px;
+            padding: 10px;
         }
 
         .heading {
@@ -114,11 +115,11 @@
     <!-- Invoice Tables -->
     <div class="table-container">
         <!-- Show All Invoices -->
-        <h2>Show All Invoices</h2>
-        <input type="text" id="searchAllInvoices" placeholder="Search by TRN or Invoice ID">
+        <h2>All Invoices</h2>
+        <input type="text" id="searchAllInvoices" placeholder="Search by TRN">
         <button onclick="ShowInvoices()">Search</button>
-        <table id="invoicesTable">
-            <thead>
+        <table>
+            <thead >
                 <tr>
                     <th>Invoice ID</th>
                     <th>TRN</th>
@@ -126,14 +127,14 @@
                     <th>Total Amount</th>
                 </tr>
             </thead>
-            <tbody></tbody>
+            <tbody id="invoicesTable"></tbody>
         </table>
 
         <!-- User-Specific Invoices -->
         <h2>User-Specific Invoices</h2>
-        <input type="text" id="searchUserInvoices" placeholder="Search by Invoice ID">
-        <button onclick="SearchUserInvoices()">Search</button>
-        <table id="userInvoicesTable">
+        <input type="text" id="searchUserInvoices" placeholder="Search by Invoice Number">
+        <button onclick="GetUserInovices()">Search</button>
+        <table>
             <thead>
                 <tr>
                     <th>Invoice ID</th>
@@ -142,10 +143,10 @@
                     <th>Total Amount</th>
                 </tr>
             </thead>
-            <tbody></tbody>
-        </table>
+            <tbody id ="userInvoicesTable"></tbody>
+        </table >
     </div>
-    <script src="../JavaScript/stats.js"></script>
+
     <footer class="footerMain">
         <p><b>Telephone:</b>1(<i>876</i>) 598-8988</p>
         <p><b>Email Address:</b>RicksAutoShop@gov.jm</p>

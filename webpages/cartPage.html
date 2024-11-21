@@ -1,58 +1,88 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>Rick's Auto Shop</title>
-		<link rel = "icon" type = "image/x-icon" href = "../images/RickAutoIcon.webp">
-		<meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
-		<meta name = "author" content = "Andre Ferguson - 2306096">
-		<link rel = "stylesheet" href = "../CSS/default.css">
-	</head>
 
+<head>
+	<title>Rick's Auto Shop</title>
+	<link rel="icon" type="image/x-icon" href="../images/RickAutoIcon.webp">
+	<meta name="viewport" content="width = device-width, initial-scale = 1.0">
+	<meta name="author" content="Andre Ferguson - 2306096">
+	<link rel="stylesheet" href="../CSS/default.css">
+</head>
+<style>
+	table {
+		table-layout: fixed;
+	}
 
-	<body id = "cartPage" name = "top">
-			
-		<div class="header headerBorder">
-			<img src="../images/RickAutoLogo.webp" alt="Image not found">
-			<a href="../webpages/homePage.html">Rick's AutoShop &#128191;</a>
-			<div class="header-right">
-				<a href="services.html">Services &#128736;</a>
-				<a class="active" href="cartPage.html">Cart &#128297;</a>
-				<a href="checkout.html">Checkout &#129520; </a>
-				<a href="stats.html">Statistics &#128200;</a>
-			</div>
+	td {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		word-wrap: break-word;
+	}
+
+	@media only screen and (max-width: 500px) {
+
+		/* horizontal scrollbar for tables if mobile screen */
+		.tablemobile {
+			overflow-x: auto;
+			display: block;
+		}
+
+		#cartTable th,
+		#cartTable td {
+			font-size: 8px;
+		}
+
+		#itemsInCart button {
+			font-size: 9px;
+		}
+	}
+</style>
+
+<body id="cartPage" name="top">
+
+	<div class="header headerBorder">
+		<img src="../images/RickAutoLogo.webp" alt="Image not found">
+		<a href="../webpages/homePage.html">Rick's AutoShop &#128191;</a>
+		<div class="header-right">
+			<a href="services.html">Services &#128736;</a>
+			<a class="active" href="cartPage.html">Cart &#128297;</a>
+			<a href="checkout.html">Checkout &#129520; </a>
+			<a href="stats.html">Statistics &#128200;</a>
 		</div>
-			
-		<h1>Shopping Cart</h1>
-		<div class = "fadeBorder"></div></br>
+	</div>
 
-		<div class = "cart">
-			<table id = "cartTable">
-				<tbody id = "itemsInCart">
-						
-				</tbody>
-			</table>
-				
-			<div class = "controls">
-				<pre id = "total">Total Price: $<span id = "totalPrice">0.00</span></span></pre>
-				<button onclick = "cartClear()" class = "buttonAction">Clear</button>
-				<button onclick = "cartCheckout()" class = "buttonAction">Check Out</button>
-				<button onclick = "cartClose()" class = "buttonAction">Close</button>
-			</div>
+	<h1>Shopping Cart</h1>
+	<div class="fadeBorder"></div></br>
+
+	<div class="cart">
+		<table id="cartTable">
+			<tbody id="itemsInCart">
+
+			</tbody>
+		</table>
+
+		<div class="controls">
+			<pre id="total">Total Price: $<span id = "totalPrice">0.00</span></span></pre>
+			<button onclick="cartClear()" class="buttonAction">Clear</button>
+			<button onclick="cartCheckout()" class="buttonAction">Check Out</button>
+			<button onclick="cartClose()" class="buttonAction">Close</button>
 		</div>
-		<script src="../JavaScript/cart.js"></script>
-		 <!-- Footer Section -->
-		 <footer class="footerMain">
+	</div>
+	<script src="../JavaScript/cart.js"></script>
+	<!-- Footer Section -->
+	<footer class="footerMain">
 
-			<p> <b> Telephone:</b>1(<i>876</i>) 598-8988</p>
-			<p> <b>Email Address:</b>RicksAutoShop@gov.jm</p>
-			<p><b> Location:</b>
-			<p>207 Harbour Street</p>
-			<p>Building H</p>
-			<p>Montego Bay</p>
-			<p>St. James</p>
-			</p>
-			<a href="#top">To Top</a> |
-			<a href="stats.html">Statistics</a>
-		</footer>
-	</body>
+		<p> <b> Telephone:</b>1(<i>876</i>) 598-8988</p>
+		<p> <b>Email Address:</b>RicksAutoShop@gov.jm</p>
+		<p><b> Location:</b>
+		<p>207 Harbour Street</p>
+		<p>Building H</p>
+		<p>Montego Bay</p>
+		<p>St. James</p>
+		</p>
+		<a href="#top">To Top</a> |
+		<a href="stats.html">Statistics</a>
+	</footer>
+</body>
+
 </html>

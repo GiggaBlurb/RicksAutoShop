@@ -9,6 +9,39 @@
     <link rel="stylesheet" href="../CSS/default.css">
     <script src="../JavaScript/checkout.js"></script>
 </head>
+<style>
+    table {
+        table-layout: fixed;
+    }
+
+    td {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+    }
+
+    @media only screen and (max-width: 500px) {
+
+        /* horizontal scrollbar for tables if mobile screen */
+        .tablemobile {
+            overflow-x: auto;
+            display: block;
+        }
+
+        #checkoutSummary th,
+        #checkoutSummary td {
+            font-size: 12px;
+        }
+
+        #itemsInCart button {
+            font-size: 9px;
+        }
+
+        .box-right {
+            text-align: left;
+        }
+    }
+</style>
 
 <body id="checkoutPage" name="Top">
 
@@ -23,12 +56,12 @@
         </div>
     </div>
 
-    <h1 >Checkout</h1>
+    <h1>Checkout</h1>
     <div class="fadeBorder"></div>
 
     <!-- Cart Summary Section -->
     <div id="checkoutSummary" class="box">
-        
+
         <div id="cartSummary" class="box-left">
             <h2 class="title">Cart Summary</h2>
             <table id="Invoice" cellspacing="5" cellpadding="5">
@@ -114,13 +147,13 @@
             <label for="amount">Amount Being Paid:</label>
             <input class="input" type="number" id="amount" required>
             <!-- Action Buttons -->
-    <div class="controls">
-        <button class="buttonAction" onclick="confirmCheckout()">Confirm</button>
-        <button class="buttonAction" onclick="cancelCheckout()">Cancel</button>
-    </div>
+            <div class="controls">
+                <button class="buttonAction" onclick="confirmCheckout()">Confirm</button>
+                <button class="buttonAction" onclick="cancelCheckout()">Cancel</button>
+            </div>
         </form>
     </div>
-    
+
 
 
 

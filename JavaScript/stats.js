@@ -1,23 +1,25 @@
 
+let UsersArray = [];//declare userlist Array
+if (localStorage.getItem("RegistrationData") !== null) {//if User List is not null
+    UsersArray = JSON.parse(localStorage.getItem("RegistrationData"));//Get User List from local storage
+}
+
+const currentUser = localStorage.getItem("currentUser") || null;//index of cuurent user logged in
+
 window.onload = function () {
     const page = document.getElementsByTagName('body')[0].id;
     if (page === 'statspage') {
         ShowUserFrequency();
-       ShowInvoices();
+        ShowInvoices()
+        GetUserInovices()
     }
 };
 
 function ShowUserFrequency() {
 
-    var UsersArray = [];//declare userlist Array
-    if (localStorage.getItem("RegistrationData") !== null) {//if User List is not null
-        UsersArray = JSON.parse(localStorage.getItem("RegistrationData"));//Get User List from local storage
-    }
-
-
     let GenderChart = document.getElementById("GenderChart");
     let MaxBarHeight = 80;
-    let MinBarHeight =20;
+    let MinBarHeight = 20;
 
     const genderdata = [0, 0, 0]
 
@@ -52,9 +54,9 @@ function ShowUserFrequency() {
     /* JavaScript for Charts */
 
     // Retrieve user data from localStorage
-    const userData = JSON.parse(localStorage.getItem("RegistrationData")) || [];  
+    const userData = JSON.parse(localStorage.getItem("RegistrationData")) || [];
     let currentDate = new Date();//get current date
-  
+
 
     // Initialize counters for gender and age groups
     const genderCounts = { Male: 0, Female: 0, Other: 0 };
@@ -72,7 +74,7 @@ function ShowUserFrequency() {
 
         // Count age groups
         //age is not stored in Userdata use the dob to calculate
-        const age =Math.floor((currentDate - bornDate) / 3.1536E+10);//calculate users Age;
+        const age = Math.floor((currentDate - bornDate) / 3.1536E+10);//calculate users Age;
 
         if (age >= 18 && age <= 25) {
             ageGroupCounts["18-25"]++;
@@ -95,84 +97,87 @@ function ShowUserFrequency() {
         bar.innerHTML = ageGroupCounts[ageGroup];
         ageContainer.appendChild(bar);
     });
-    
+
 };
 
+/* JavaScript for Charts and Invoices */
 
-// Function to display all invoices and allow searching
 function ShowInvoices() {
-    // Retrieve all invoices from localStorage
     const allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
-    const searchAll = document.getElementById("searchAllInvoices");
+    const searchQuery = document.getElementById("searchAllInvoices").value.trim().toLowerCase();
+    const filteredInvoices = searchQuery
+        ? allInvoices.filter(invoice =>
+            invoice.trn.toLowerCase().includes(searchQuery) ||
+            invoice.invoiceNumber.toLowerCase().includes(searchQuery))
+        : allInvoices;
 
-    // Render all invoices in the table
-    function renderAllInvoices(filteredInvoices) {
-        const tableBody = document.querySelector("#allInvoicesTable tbody");
-        tableBody.innerHTML = "";
+    const tableBody = document.getElementById("invoicesTable");
+    tableBody.innerHTML = "";
 
-        filteredInvoices.forEach(invoice => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-                <td>${invoice.InvoiceNumber}</td>
-                <td>${invoice.trn}</td>
-                <td>${invoice.date}</td>
-                <td>${invoice.total}</td>
-            `;
-            tableBody.appendChild(row);
-        });
+    filteredInvoices.forEach(invoice => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${invoice.invoiceNumber}</td>
+            <td>${invoice.trn}</td>
+            <td>${invoice.date}</td>
+            <td>${invoice.grandTotal}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+
+    console.log(filteredInvoices);
+}
+
+function GetUserInovices() {
+    let userTRN = UsersArray[currentUser].trn;
+    const allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
+    userInvoice=[];
+    const invoiceNum = document.getElementById("searchUserInvoices").value || "novalue";
+
+    if (invoiceNum === "novalue") {//SHow all invoices  for current User
+       userInvoice= allInvoices.filter(invoice => invoice.trn.includes(userTRN));   
+    }
+    else {//filet byy customer inoice number
+      userInvoice=  allInvoices.filter(invoice => invoice.invoiceNumber === invoiceNum);
     }
 
-    renderAllInvoices(allInvoices);
+    const tableBody = document.getElementById("userInvoicesTable");
+    tableBody.innerHTML = "";
 
-    // Event listener for search input (case-insensitive)
-    searchAll.addEventListener("input", () => {
-        const query = searchAll.value.toLowerCase();
-        const filteredInvoices = allInvoices.filter(invoice =>
-            invoice.InvoiceNumber.toLowerCase().includes(query) ||
-            invoice.trn.toLowerCase().includes(query)
-        );
-        renderAllInvoices(filteredInvoices);
+    userInvoice.forEach(invoice => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${invoice.invoiceNumber}</td>
+            <td>${invoice.trn}</td>
+            <td>${invoice.date}</td>
+            <td>${invoice.grandTotal}</td>
+        `;
+        tableBody.appendChild(row);
     });
 }
 
-// Function to display user-specific invoices based on logged-in TRN
-function GetUserInvoices() {
-    // Retrieve all invoices from localStorage
+function SearchUserInvoices() {
+    const searchQuery = document.getElementById("searchUserInvoices").value.trim().toLowerCase();
     const allInvoices = JSON.parse(localStorage.getItem("AllInvoices")) || [];
-    const loggedInTRN = "123456789"; // Example logged-in user's TRN
-    const userInvoices = allInvoices.filter(invoice => invoice.trn === loggedInTRN);
+    const userTRN = localStorage.getItem("RegistrationData") || [];
+    console.log(userTRN);
+    const userInvoices = allInvoices.filter(invoice => invoice.trn === userTRN);
+    const filteredUserInvoices = searchQuery
+        ? userInvoices.filter(invoice =>
+            invoice.invoiceNumber.toLowerCase().includes(searchQuery))
+        : userInvoices;
 
-    const searchUser = document.getElementById("searchUserInvoices");
+    const tableBody = document.getElementById("invoicesTable");
+    tableBody.innerHTML = "";
 
-    // Render user-specific invoices in the table
-    function renderUserInvoices(filteredInvoices) {
-        const tableBody = document.querySelector("#userInvoicesTable tbody");
-        tableBody.innerHTML = "";
-
-        filteredInvoices.forEach(invoice => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-                <td>${invoice.InvoiceNumber}</td>
-                <td>${invoice.trn}</td>
-                <td>${invoice.date}</td>
-                <td>${invoice.total}</td>
-            `;
-            tableBody.appendChild(row);
-        });
-    }
-
-    renderUserInvoices(userInvoices);
-
-    // Event listener for search input (case-insensitive) for user-specific invoices
-    searchUser.addEventListener("input", () => {
-        const query = searchUser.value.toLowerCase();
-        const filteredInvoices = userInvoices.filter(invoice =>
-            invoice.InvoiceNumber.toLowerCase().includes(query)
-        );
-        renderUserInvoices(filteredInvoices);
+    filteredUserInvoices.forEach(invoice => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${invoice.id}</td>
+            <td>${invoice.trn}</td>
+            <td>${invoice.date}</td>
+            <td>${invoice.total}</td>
+        `;
+        tableBody.appendChild(row);
     });
-}
-
-
-    });
-}
+};

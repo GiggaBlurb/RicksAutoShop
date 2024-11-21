@@ -1,5 +1,10 @@
+
+let newInvoiceNumber;
+
 window.onload = function () {
     const page = document.getElementsByTagName('body')[0].id;
+      //generate  invoice number
+    newInvoiceNumber= generateInvoiceNumber();
     if (page === 'checkoutPage') {
         displayCartSummary();
     }
@@ -15,8 +20,7 @@ function displayCartSummary() {
     const cartItems = currentUser.cart.servicelist;
     let subtotal = 0, totalTax = 0, totalDiscount = 0;
 
-    //generate  invoice number
-    const newInvoiceNumber= generateInvoiceNumber();
+  
 
     // Clear previous items in the invoice table
     invoiceTable.innerHTML = "";
@@ -98,6 +102,9 @@ function confirmCheckout() {
     // Clear the cart
     currentUser.cart.servicelist = [];
     currentUser.cart.total = 0;
+    currentUser.cart.subTotal = 0;
+    currentUser.cart.totalDiscount = 0;
+    currentUser.cart.totalTax = 0;
 
     // Update localStorage
     userArray[userIndex] = currentUser;
