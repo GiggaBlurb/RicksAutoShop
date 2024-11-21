@@ -1,7 +1,8 @@
 # Rick's AutoShop
 # hosted at https://djfuryx.github.io/RicksAutoShop
 
-#  Norman Martin-2300232
+#  Norman Martin - 2300232
+#  Nigel Hutchinson - 2302674
 # Created Html,CSS and JavaScript for:
 #   Login Page
 #   Registration Page
