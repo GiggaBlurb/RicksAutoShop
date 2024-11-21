@@ -71,7 +71,7 @@ function confirmCheckout() {
     const userIndex = localStorage.getItem("currentUser");
     const userArray = JSON.parse(localStorage.getItem("RegistrationData"));
     const currentUser = userArray[userIndex];
-
+    
     const invoiceData = {
         company: "Rick's Auto Shop",
         date: new Date().toLocaleDateString(),
