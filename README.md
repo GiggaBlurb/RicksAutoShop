@@ -8,8 +8,9 @@
 #   Reset Page
 #   Home Page
 #   Service Page
-#   Assited with Site Wireframe
-#   Assited with Stats Page
+# Assited with:
+#   Site Wireframe
+#   Stats Page
 
 #  Nigel Hutchinson - 2302674
 
