@@ -9,7 +9,7 @@
 #   Home Page
 #   Service Page
 #   Assited with Site Wireframe
-#   Assited Stats Page
+#   Assited with Stats Page
 
 #  Nigel Hutchinson - 2302674
 
