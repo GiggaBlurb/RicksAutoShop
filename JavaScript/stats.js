@@ -36,7 +36,6 @@ function ShowUserFrequency() {
 
     }
 
-    genderdata[2]=10;
     genderdata.forEach(Total => {
         const bar = document.createElement('div');
         bar.classList.add('bar');
